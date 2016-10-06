@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>主页</title>
+		<link href="//cdn.bootcss.com/weui/1.0.1/style/weui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="../css/info/index.css" />
+	</head>
+
+	<body>
+		<div class="m-pg" id="content">
+			<header class="m-hd weui-cells">
+				<div class="g-hd">
+					<div class="u-pos"></div>
+				</div>
+				<div class="g-tt weui-cell">
+					<div class="u-info-img weui-cell__hd">
+						<img class="u-info-img" :src="pageInfo.uInfoImg" />
+					</div>
+					<h4 class="weui-cell__bd">{{pageInfo.uInfoName}}</h4>
+					<div class="weui-cell__ft m-info-data">
+						<div class="m-count u-follows">
+							<div class="u-num">{{pageInfo.uFollows}}</div>
+							<p>关注</p>
+						</div>
+						<div class="m-count u-msg">
+							<div class="u-num">{{pageInfo.uMsg}}</div>
+							<p>留言</p>
+						</div>
+					</div>
+				</div>
+				<div class="g-info weui-cell">
+					<div class="weui-cell__bd">认证信息</div>
+					<div class="weui-cell__ft">
+						<span class="u-attest" v-for="item in pageInfo.aAttests" :class="item.color">{{item.attest}}</span>
+					</div>
+				</div>
+				<div class="g-info weui-cell weui-cell_access">
+					<div class="weui-cell__bd">时间</div>
+					<div class="weui-cell__ft"></div>
+				</div>
+			</header>
+			<section class="g-bd weui-cells">
+				<div class="weui-cell" v-for="item in pageInfo.aServices">
+					<div class="weui-cell__bd">{{item.serviceItem}}</div>
+					<div class="weui-cell__ft">
+						<a class="u-btn" :href="item.serviceHref">预约</a>
+					</div>
+				</div>
+				<div class="u-more weui-cell weui-cell_access">
+					<div class="weui-cell__bd">更多服务</div>
+					<div class="weui-cell__ft"></div>
+				</div>
+			</section>
+			<section class="g-bd">
+				<ul class="m-tab" @click="tab($event)">
+					<li :class="{'z-atv':aTabAtv[0]}" data-flag="summary">简介</li>
+					<li :class="{'z-atv':aTabAtv[1]}" data-flag="show">展示</li>
+					<li :class="{'z-atv':aTabAtv[2]}" data-flag="docter">医生</li>
+					<li :class="{'z-atv':aTabAtv[3]}" data-flag="appraise">评价</li>
+				</ul>
+				<transition name="ts-cpmt">
+					<component v-if="isShowComt" :is="cpmt" :fdata="propsMsg"></component>
+				</transition>
+				
+			</section>
+		</div>
+		<footer>
+			<a>
+				<i class="iconfont"></i>
+				<span>收藏</span>
+			</a>
+			<a>
+				<i class="iconfont"></i>
+				<span>在线咨询</span>
+			</a>
+			<a>
+				<i class="iconfont"></i>
+				<span>电话咨询</span>
+			</a>
+		</footer>
+		<div id="tp">
+			<!--简介-->
+			<template id="TPsummary" >
+				<div class="u-summary m-cpmt weui-cells">
+					<div class="weui-cell">
+						<div class="weui-cell__hd">机构简介</div>
+						<div class="weui-cell__bd">{{fdata.info}}</div>
+					</div>
+					<div class="weui-cell">
+						<div class="weui-cell__hd">机构成就</div>
+						<div class="weui-cell__bd">{{fdata.achievement}}</div>
+					</div>
+					<div class="weui-cell">
+						<div class="weui-cell__hd">服务理念</div>
+						<div class="weui-cell__bd">{{fdata.idea}}</div>
+					</div>
+				</div>
+			</template>
+			<!--展示-->
+			<template id="TPshow">
+				<div class="u-show m-cpmt">
+					<img v-for="item in fdata" :src="item" />
+				</div>
+			</template>
+			<!--医生-->
+			<template id="TPdocter">
+				<div class="u-docter m-cpmt weui-cells">
+					<div class="weui-cell weui-cell_access" v-for="item in fdata">
+						<div class="u-docter-img weui-cell__hd">
+							<img :src="item.img" />
+						</div>
+						<div class="weui-cell__bd">
+							<h5 class="u-docter-name">{{item.name}}</h5>
+							<p class="u-docter-job">{{item.job}}</p>
+							<p class="u-docter-summary">{{item.summary}}</p>
+						</div>
+						<div class="weui-cell__ft"></div>
+					</div>
+					
+					<div class="u-more weui-cell weui-cell_access">
+						<div class="weui-cell__bd">更多医生</div>
+						<div class="weui-cell__ft"></div>
+					</div>
+				</div>
+			</template>
+			<!--评价-->
+			<template id="TPappraise">
+				<div class="u-appraise m-cpmt">
+					<div class="weui-cells" v-for="item in fdata">
+						<div class="weui-cell">
+							<div class="weui-cell__hd u-user-img">
+								<img :src="item.img" />
+							</div>
+							<div class="weui-cell__bd">
+								<p class="u-user">{{item.name}}</p>
+							</div>
+							<div class="weui-cell__ft">
+								<p class="u-time">{{item.time}}</p>
+							</div>
+						</div>
+						<div class="weui-cell">
+							<div class="weui-cell__bd">
+								<p>{{item.word}}</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</template>
+
+		</div>
+		<script src="//cdn.bootcss.com/vue/2.0.0/vue.js"></script>
+		<script type="text/javascript" src="../js/info/index.js" ></script>
+	</body>
+
+</html>
