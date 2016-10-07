@@ -74,9 +74,15 @@ body{
 	background:#fff;
 }
 .m-tab{
+	display: -webkit-flex;
 	display: flex;
+	-webkit-justify-content: center;
+	-webkit-box-pack: center;
 	justify-content: center;
+	
+	-webkit-flex-wrap: nowrap;
 	flex-wrap: nowrap;
+	
 	
 	padding:0 15px;
 	margin-top:20px;
@@ -86,6 +92,7 @@ body{
 }
 
 .m-tab li{
+	-webkit-flex-grow: 1;
 	flex-grow: 1;
 	
 	padding:9px 0;
@@ -142,16 +149,13 @@ body{
 }
 
 .u-show{
-	display: flex;
-	align-items: stretch;
-	justify-content: space-between;
-	flex-wrap: wrap;
 	padding:15px;
+	
+	text-align: center;
 }
 .u-show img{
-	flex-grow: 1;
+	width:30%;
 	margin:5px;
-	height:100px;
 }
 .u-user-img{
 	height:36px;
