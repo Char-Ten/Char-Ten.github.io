@@ -1,0 +1,105 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>xuebi</title>
+    <style>
+        .obj {
+            height: 120px;
+            width: 120px;
+            background-image: url(1.png);
+            animation: .5s steps(4) infinite;
+            animation-name: goLeft
+        }
+        
+        @keyframes goDown {
+            0% {
+                background-position: 0 0;
+            }
+            100% {
+                background-position: 480px 0;
+            }
+        }
+        
+        @keyframes goRight {
+            0% {
+                background-position: 0 -120px;
+            }
+            100% {
+                background-position: 480px -120px;
+            }
+        }
+        
+        @keyframes goUp {
+            0% {
+                background-position: 0 -240px;
+            }
+            100% {
+                background-position: 480px -240px;
+            }
+        }
+        
+        @keyframes goLeft {
+            0% {
+                background-position: 0 -360px;
+            }
+            100% {
+                background-position: 480px -360px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="obj" id="obj" :style="{'animation-name':animate,'transform':updatePos}"></div>
+    <script src="http://cdn.bootcss.com/vue/2.0.0/vue.js"></script>
+    <script>
+        new Vue({
+            el: '#obj',
+            data: {
+                pos: {
+                    x: 0,
+                    y: 0
+                },
+                animate: '',
+                speed: 20,
+            },
+            computed: {
+                updatePos: function() {
+                    return 'translate(' + this.pos.x + 'px,' + this.pos.y + 'px)'
+                }
+            },
+            methods: {
+                setAnmt: function(value) {
+                    this.animate = value;
+                }
+            },
+            mounted: function() {
+                var obj = this;
+                window.onkeydown = function(e) {
+                    switch (e.keyCode) {
+                        case 65:
+                            obj.pos.x -= obj.speed;
+                            obj.setAnmt('goLeft')
+                            break;
+                        case 68:
+                            obj.pos.x += obj.speed;
+                            obj.setAnmt('goRight')
+                            break;
+                        case 87:
+                            obj.pos.y -= obj.speed;
+                            obj.setAnmt('goUp')
+                            break;
+                        case 83:
+                            obj.pos.y += obj.speed;
+                            obj.setAnmt('goDown')
+                            break;
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
