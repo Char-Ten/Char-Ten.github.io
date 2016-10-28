@@ -128,7 +128,7 @@
             <a class="m-cell" target="_blank" :href="item.path" v-for="item in aFilterList" key="item.name" @click="eHref($event,item)">
                 <div class="g-hd" key="item.name">
                     <svg class="icon" style="font-size:100px" aria-hidden="true" key="item.name">
-						    <use xlink:href="#icon-documents" key="item.name"></use>
+						    <use :xlink:href="icon[sType(item.name)]||'#icon-documents'" key="item.name"></use>
 					</svg>
                 </div>
                 <p key="item.name">{{item.name}}</p>
