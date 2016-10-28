@@ -1,193 +1,219 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
 
-	<head>
-		<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-		<title>Bilibili Community Programming Union</title>
-		<link rel="stylesheet" href="css/reset.css" />
-		<link rel="stylesheet" href="css/index.css" media="screen and (min-width:768px)"/>
-		<link rel="stylesheet" href="css/mIndex.css" media="screen and (max-width:768px)"/>
-	</head>
+<head>
+    <meta charset="utf-8" />
+    <title>视图</title>
+    <script src="https://at.alicdn.com/t/font_cof7bv2lgom9529.js"></script>
+    <style>
+        .icon {
+            width: 1em;
+            height: 1em;
+            vertical-align: -0.15em;
+            fill: currentColor;
+            overflow: hidden;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        .m-pg {
+            text-align: center;
+            font-family: "微软雅黑";
+        }
+        
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            height: 50px;
+            line-height: 50px;
+            margin-bottom: 10px;
+            background: #f5f5f5;
+            box-shadow: 0 0 5px #aaa;
+        }
+        
+        .m-ct {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: stretch;
+            justify-content: stretch;
+            padding-top: 50px;
+        }
+        
+        .m-cell {
+            flex-grow: 1;
+            width: 10%;
+            padding: 5px;
+            margin: 10px;
+            cursor: pointer;
+            transition: all .5s;
+            word-break: break-all;
+        }
+        
+        .m-cell:hover {
+            background: rgba(102, 204, 255, 0.5);
+            border-color: #66ccff;
+            color: #233;
+        }
+        
+        .u-txt,
+        .u-btn {
+            padding: 5px 10px;
+            border: 1px solid #aaa;
+            border-radius: 5px;
+            outline: none;
+            font-size: 16px;
+            transition: all .5s;
+        }
+        
+        .u-txt:focus {
+            color: #66ccff;
+            border-color: #66ccff;
+            box-shadow: 0 0 10px #66ccff;
+        }
+        
+        .u-path {
+            display: inline-block;
+        }
+        
+        .u-btn {
+            background: #fff;
+            font-size: 15px;
+            cursor: pointer;
+        }
+        
+        .z-hv:hover {
+            background: rgba(102, 204, 255, 0.5);
+            border-color: #66ccff;
+            color: #fff;
+            box-shadow: 0 0 10px #66ccff
+        }
+        
+        .z-no {
+            background: #f6f6f6;
+            color: #aaa;
+            cursor: not-allowed;
+        }
+        
+        a {
+            text-decoration: none;
+            color: #666;
+        }
+        
+        .list-move,
+        .list-enter-active,
+        .list-leave-active {
+            transition: all 1s;
+        }
+        
+        .list-enter,
+        .list-leave-active {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+    </style>
+</head>
 
-	<body>
-		<div id="main" class="m-pg">
-			<header class="m-hd">
-				<a class="u-home">BCPU</a>
-				<nav>
-					<a class="z-atv">首页</a>
-					<a>文章</a>
-					<a>合作</a>
-					<a>留言板</a>
-					<a>详细了解</a>
-					<a>友情链接</a>
-					<a>返回旧版</a>
-				</nav>
-				<a class="u-bcpLink"></a>
-			</header>
-			<section class="m-ct m-banner">
-				<div class="g-md">
-					<h1>B站编程类兴趣圈联盟</h1>
-					<p>Bilibili Community Programming Union - BCPU</p>
-					<p>这里汇集了兴趣圈各编程类的圈子，还有有爱的小伙伴。</p>
-					<a class="u-btn">详细了解</a>
-				</div>
-			</section>
-			<section class="m-ct m-creater">
-				<dl class="g-tp">
-					<dt></dt>
-					<dd>创建人</dd>
-				</dl>
-				<div class="g-md">
-					<div class="u-crt u-crt1">
-						<div class="u-hd">
-							<img src="../Bilibili Community Programming Union_files/319e36d12a84c752fc58556964ddfcae89ccbaf1.jpg">
-						</div>
-						<div class="u-ft">
-							<p class="u-name">KAAAsS (SCkkk)</p>
-							<p class="u-summary">最初发起者。Android程序设计圈组长。一枚喜欢二次元的Java程序员。</p>
-						</div>
-					</div>
-					<div class="u-crt u-crt2">
-						<div class="u-hd">
-							<img src="../Bilibili Community Programming Union_files/319e36d12a84c752fc58556964ddfcae89ccbaf1.jpg">
-						</div>
-						<div class="u-ft">
-							<p class="u-name">KAAAsS (SCkkk)</p>
-							<p class="u-summary">最初发起者。Android程序设计圈组长。一枚喜欢二次元的Java程序员。</p>
-						</div>
-					</div>
-					<div class="u-crt u-crt3">
-						<div class="u-hd">
-							<img src="../Bilibili Community Programming Union_files/319e36d12a84c752fc58556964ddfcae89ccbaf1.jpg">
-						</div>
-						<div class="u-ft">
-							<p class="u-name">KAAAsS (SCkkk)</p>
-							<p class="u-summary">最初发起者。Android程序设计圈组长。一枚喜欢二次元的Java程序员。</p>
-						</div>
-					</div>
-				</div>
-			</section>
-			<section id="mWork" class="m-ct m-work">
-				<dl class="g-tp">
-					<dt></dt>
-					<dd>
-						<p>我们的工作</p>
-						<p class="f-del">很惭愧，我们只做了一个微小的工作</p>
-					</dd>
-				</dl>
-				<div class="g-md">
-					<div class="u-work u-work1">
-						<div class="u-hd">
-							<span class="iconfont">&#xe603;</span>
-						</div>
-						<div class="u-ct">
-							<p class="f-del">真正的蛤丝</p>
-							<p class="u-title">学习<span class="f-del">一个</span></p>
-						</div>
-						<div class="u-ft">
-							<p class="f-del">惊了。。。我们还有工作？</p>
-							<p>没有什么必要的“工作”，但是我们会经常讨论，比如：管理、程序方面的东西。</p>
-						</div>
-					</div>
-					<div class="u-work u-work2">
-						<div class="u-ct">
-							<p class="u-title">大角虫！</p>
-						</div>
-						<div class="u-ft">
-							<p class="f-del">是谁在用琵琶弹一曲图样图森破？</p>
-							<p>当你有问题的时候，总会有和蔼的小伙伴、大触细心地回答你！太强了</p>
-						</div>
-						<div class="u-hd">
-							<span class="iconfont">&#xe606;</span>
-						</div>
-					</div>
-					<div class="u-work u-work3">
-						<div class="u-ct">
-							<p class="f-del">不要随便搞个大新闻啊喂</p>
-							<p class="u-title">开发</p>
-						</div>
-						<div class="u-hd">
-							<span class="iconfont">&#xe605;</span>
-						</div>
-						<div class="u-ft">
-							<p class="f-del">报道出了偏差是要负责任的</p>
-							<p>当然，我们也会有合作的项目，比如目前的挖掘、分析兴趣圈数据。既能帮助兴趣圈发展，又能练习233333</p>
-						</div>
+<body>
+    <div class="m-pg" id="content">
+        <header>
+            <p class="u-path">{{sFileHref||'/'}}</p>
+            <input type="text" class="u-txt" placeholder="搜索" v-model="sQueryText" />
+            <input type="button" class="u-btn" :class="{'z-no':!isAllow,'z-hv':isAllow}" value="后退" @click="eGoBack" />
+        </header>
+        <transition-group tag="div" name="list" class="m-ct">
+            <a class="m-cell" target="_blank" :href="item.path" v-for="item in aFilterList" key="item.name" @click="eHref($event,item)">
+                <div class="g-hd" key="item.name">
+                    <svg class="icon" style="font-size:100px" aria-hidden="true" key="item.name">
+						    <use xlink:href="#icon-documents" key="item.name"></use>
+					</svg>
+                </div>
+                <p key="item.name">{{item.name}}</p>
+            </a>
+        </transition-group>
+    </div>
+    <script src="http://cdn.bootcss.com/vue/2.0.0/vue.js"></script>
+    <script src="http://cdn.bootcss.com/vue-resource/1.0.3/vue-resource.min.js"></script>
+    <script>
+        new Vue({
+            el: '#content',
+            data: {
+                aPath: [''],
+                aFileList: [],
+                icon: {
+                    html: '#icon-html',
+                    js: '#icon-js',
+                    css: '#icon-css',
+                    dir: '#icon-documents',
+                    jpg: '#icon-jpg',
+                    png: '#icon-png'
+                },
+                sQueryText: '',
+            },
+            computed: {
+                aFilterList: function() {
+                    var dis = this;
+                    return this.aFileList.filter(function(item) {
+                        return item.name.indexOf(dis.sQueryText) !== -1;
+                    });
+                },
+                sDirHerf: function() {
+                    return 'https://api.github.com/repos/Char-Ten/Char-Ten.github.io/contents/' + this.sFileHref
+                },
+                sFileHref: function() {
+                    return this.aPath.join('/');
+                },
+                isAllow: function() {
+                    if (this.aPath.length > 1) {
+                        return 1;
+                    }
+                    return 0;
+                }
+            },
+            methods: {
+                sType: function(item) {
+                    var type = item.split('.');
+                    if (type.length > 1) {
+                        return type[type.length - 1]
+                    }
+                    return 'dir'
+                },
+                eHref: function(e, item) {
+                    e.preventDefault();
+                    if (item.type == 'dir') {
+                        this.aPath.push(item.name);
+                        this.$http.get(this.sDirHerf).then(function(res) {
+                            this.aFileList = res.body;
+                        });
+                    } else {
+                        location.href = e.currentTarget.href;
+                    }
+                    this.sQueryText = ''
 
-					</div>
-				</div>
-			</section>
-			<section id="mPro" class="m-ct m-pro">
-				<dl class="g-tp z-anmt">
-					<dd>辣！下面就是我们的作品！⁄(⁄ ⁄•⁄ω⁄•⁄ ⁄)⁄</dd>
-					<dt></dt>
-				</dl>
-				<div class="g-md">
-					<div class="u-box u-box1">
-						<div class="u-title">Bilibili兴趣圈API</div>
-						<div class="u-content">这个API主要是Bilibili兴趣圈的安卓客户端，所使用的API。一般来说，使用这套API是需要APPKEY的。具体的调用可以参见KAAAsS个人维护的API，BiliAPI v1.0的有关API进行调用。</div>
-						<div class="u-footer">
-							<a class="u-btn">去看看？</a>
-						</div>
-					</div>
-					<div class="u-box  u-box1">
-						<div class="u-title">IM9 Helper - 更聪明的数据分析</div>
-						<div class="u-content">这是一个用于兴趣圈的书签栏脚本（仅兴趣圈管理人员），原作者是联盟成员 @airhiki，目前由BCPU维护。</div>
-						<div class="u-footer">
-							<a class="u-btn">去看看？</a>
-						</div>
-					</div>
-					<div class="u-box u-box1">
-						<div class="u-title">合作</div>
-						<div class="u-content">为了给兴趣圈更多贡献，我们也会积极和各圈子展开合作。目前有合作意向的有动漫资源圈。我们热切希望贵圈的加入~</div>
-						<div class="u-footer">
-							<a class="u-btn">敬请期待</a>
-						</div>
-					</div>
-				</div>
-			</section>
-			<section class="m-ct m-joinus">
-				<p>辣么问题来了</p>
-				<p class="f-del">学习挖掘机哪家强？</p>
-				<p>怎么加入我们捏？</p>
-				<p class="f-del">对啊，我们辣么强！</p>
-				<p>只要点击下面这个神奇的按钮！</p>
-				<p class="f-del">只要998,萌主抱回家，白天么么哒，晚上啪啪啪～(￣▽￣～)(～￣▽￣)～</p>
-				<div>
-					<a class="u-btn">加入我们</a>
-				</div>
-			</section>
-			<section class="m-ct m-callus">
-				<dl class="g-tp">
-					<dt></dt> 
-					<dd>或者联系我们</dd>
-				</dl>
-				<form id="feedbackForm" class="text-center">
-					<div class="iconfont">&#xe600;</div>
-					<div class="form-group">
-						<label for="name">称呼</label>
-						<input type="text" class="form-control" id="name" placeholder="称呼">
-						<span class="help-block" style="display: inline-block">sf</span>
-					</div>
-					<div class="form-group">
-						<label for="email">E-Mail</label>
-						<input type="email" class="form-control" id="email" placeholder="Email 地址">
-						<span class="help-block" style="display: none;">sd</span>
-					</div>
-					<div class="form-group">
-						<label for="message">信息</label>
-						<textarea style="resize: none;" rows="10" cols="100" class="form-control" id="message" placeholder="信息"></textarea>
-						<span class="help-block" style="display: inline-block;">aaa</span>
-					</div>
-					<button type="button" id="feedbackSubmit" class="btn btn-primary btn-lg" style=" margin-top: 10px;"> 走你</button>
-				</form>
-			</section>
-		</div>
-		<footer class="m-ft"></footer>
-		<script src="//cdn.bootcss.com/jquery/3.0.0/jquery.min.js"></script>
-		<script src="js/anmt.js"></script>
-	</body>
+                },
+                eGoBack: function() {
+                    if (this.aPath.length > 1) {
+                        this.aPath.pop();
+                        this.$http.get(this.sDirHerf).then(function(res) {
+                            this.aFileList = res.body;
+                        })
+                    }
+
+                    this.sQueryText = ''
+                }
+            },
+            mounted: function() {
+                this.$nextTick(function() {
+                    this.$http.get(this.sDirHerf).then(function(res) {
+                        this.aFileList = res.body;
+                    })
+                });
+            }
+        })
+    </script>
+</body>
 
 </html>
