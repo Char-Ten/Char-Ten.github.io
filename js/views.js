@@ -69,6 +69,13 @@ new Vue({
         this.$nextTick(function() {
             this.$http.get(this.sDirHerf).then(function(res) {
                 this.aFileList = res.body;
+            });
+            this.$http.get('https://api.github.com/users/Char-Ten/repos').then(function(res) {
+                res.body.forEach(function(item) {
+                    if (item.has_pages) {
+                        console.log(item.name)
+                    }
+                })
             })
         });
     }
