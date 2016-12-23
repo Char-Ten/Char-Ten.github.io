@@ -76,7 +76,7 @@
                     box[i].R += box[i].v;
                     box[i].v += Math.random() * 0.01;
                     box[i].r = 5 * box[i].R / flag + 5;
-                    box[i].b += Math.random() * 0.05;
+                    box[i].d += box[i].v / box[i].R
                     fillStar(box[i]);
                 }
                 ctx.fill();
