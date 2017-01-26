@@ -6,7 +6,11 @@
     <title>视图</title>
     <link rel="stylesheet" href="./css/index.css" />
     <script>
-        var Blog = {};
+        var Blog = {
+            getList: 'https://localhost/jianshu/article/ls',
+            jianshuId: 'fd817497ee3c',
+            githubUname: 'char-ten'
+        };
     </script>
 </head>
 
@@ -45,7 +49,7 @@
                     <a class="next_btn" href="#/list"></a>
                 </div>
             </div>
-            <div class="stage-view dir">
+            <div class="stage-view dir" @mousewheel="eWheelDirStage($event)">
                 <header class="dir_hd">
                     <i class="u-icon">&#xe6b6;</i>
                     <p class="u-en">ARTICLE LIST</p>
@@ -55,179 +59,17 @@
                             <p>这里从来不搞大新闻</p>
                             <p class="u-sm">NEVER MAKE BIG NEWS HERE</p>
                         </legend>
-                        <h3>这是dalao写的一个标题</h3>
-                        <article>这是dalao写的一些段落</article>
+                        <app-dir-info></app-dir-info>
                     </fieldset>
                 </header>
+                <app-dir></app-dir>
                 <div class="next">
                     <a class="next_btn" href="#/link"></a>
                 </div>
-                <section class="dir_bd">
-                    <ul class="dir_ct">
-                        <li class="dir-item cell">
-                            <div class="cell-hd">
-                                <img class="dir-item_img" src="//awb.img.xmtbang.com/img/uploadnew/201603/01/e9adc9cd6a114c6fbbcc8ae6e6fd6578.jpg" />
-                            </div>
-                            <div class="cell-bd dir-item_ct">
-                                <h3>这是dalao写的一个标题</h3>
-                                <article>这是dalao写的一些段落</article>
-                            </div>
-                        </li>
-                        <li class="dir-item cell">
-                            <div class="cell-hd">
-                                <img class="dir-item_img" src="//awb.img.xmtbang.com/img/uploadnew/201603/01/e9adc9cd6a114c6fbbcc8ae6e6fd6578.jpg" />
-                            </div>
-                            <div class="cell-bd dir-item_ct">
-                                <h3>这是dalao写的一个标题</h3>
-                                <article>这是dalao写的一些段落</article>
-                            </div>
-                        </li>
-                        <li class="dir-item cell">
-                            <div class="cell-hd">
-                                <img class="dir-item_img" src="//awb.img.xmtbang.com/img/uploadnew/201603/01/e9adc9cd6a114c6fbbcc8ae6e6fd6578.jpg" />
-                            </div>
-                            <div class="cell-bd dir-item_ct">
-                                <h3>这是dalao写的一个标题</h3>
-                                <article>这是dalao写的一些段落</article>
-                            </div>
-                        </li>
-                        <li class="dir-item cell">
-                            <div class="cell-hd">
-                                <img class="dir-item_img" src="//awb.img.xmtbang.com/img/uploadnew/201603/01/e9adc9cd6a114c6fbbcc8ae6e6fd6578.jpg" />
-                            </div>
-                            <div class="cell-bd dir-item_ct">
-                                <h3>这是dalao写的一个标题</h3>
-                                <article>这是dalao写的一些段落</article>
-                            </div>
-                        </li>
-                        <li class="dir-item cell">
-                            <div class="cell-hd">
-                                <img class="dir-item_img" src="//awb.img.xmtbang.com/img/uploadnew/201603/01/e9adc9cd6a114c6fbbcc8ae6e6fd6578.jpg" />
-                            </div>
-                            <div class="cell-bd dir-item_ct">
-                                <h3>这是dalao写的一个标题</h3>
-                                <article>这是dalao写的一些段落</article>
-                            </div>
-                        </li>
-                        <li class="dir-item cell">
-                            <div class="cell-hd">
-                                <img class="dir-item_img" src="//awb.img.xmtbang.com/img/uploadnew/201603/01/e9adc9cd6a114c6fbbcc8ae6e6fd6578.jpg" />
-                            </div>
-                            <div class="cell-bd dir-item_ct">
-                                <h3>这是dalao写的一个标题</h3>
-                                <article>这是dalao写的一些段落</article>
-                            </div>
-                        </li>
-                    </ul>
-                </section>
             </div>
             <div class="stage-view fd">
                 <section class="fd_bd">
                     <ul class="fd_ct">
-                        <li class="fd-item">
-                            <div class="cell">
-                                <div>
-                                    <div class="fd-item_img">
-                                        <i class="u-icon">&#xe647;</i>
-                                    </div>
-                                </div>
-                                <div class="cell-bd">
-                                    <div class="fd-item_dialog">在下叶良辰，这是我的<a href="#">博客</a></div>
-                                </div>
-                                <div class="cell-ft"></div>
-                            </div>
-                        </li>
-                        <li class="fd-item">
-                            <div class="cell">
-                                <div>
-                                    <div class="fd-item_img">
-                                        <i class="u-icon">&#xe647;</i>
-                                    </div>
-                                </div>
-                                <div class="cell-bd">
-                                    <div class="fd-item_dialog">在下叶良辰，这是我的<a href="#">博客</a></div>
-                                </div>
-                                <div class="cell-ft"></div>
-                            </div>
-                        </li>
-                        <li class="fd-item">
-                            <div class="cell">
-                                <div>
-                                    <div class="fd-item_img">
-                                        <i class="u-icon">&#xe647;</i>
-                                    </div>
-                                </div>
-                                <div class="cell-bd">
-                                    <div class="fd-item_dialog">在下叶良辰，这是我的<a href="#">博客</a></div>
-                                </div>
-                                <div class="cell-ft"></div>
-                            </div>
-                        </li>
-                        <li class="fd-item">
-                            <div class="cell">
-                                <div>
-                                    <div class="fd-item_img">
-                                        <i class="u-icon">&#xe647;</i>
-                                    </div>
-                                </div>
-                                <div class="cell-bd">
-                                    <div class="fd-item_dialog">在下叶良辰，这是我的<a href="#">博客</a></div>
-                                </div>
-                                <div class="cell-ft"></div>
-                            </div>
-                        </li>
-                        <li class="fd-item">
-                            <div class="cell">
-                                <div>
-                                    <div class="fd-item_img">
-                                        <i class="u-icon">&#xe647;</i>
-                                    </div>
-                                </div>
-                                <div class="cell-bd">
-                                    <div class="fd-item_dialog">在下叶良辰，这是我的<a href="#">博客</a></div>
-                                </div>
-                                <div class="cell-ft"></div>
-                            </div>
-                        </li>
-                        <li class="fd-item">
-                            <div class="cell">
-                                <div>
-                                    <div class="fd-item_img">
-                                        <i class="u-icon">&#xe647;</i>
-                                    </div>
-                                </div>
-                                <div class="cell-bd">
-                                    <div class="fd-item_dialog">在下叶良辰，这是我的<a href="#">博客</a></div>
-                                </div>
-                                <div class="cell-ft"></div>
-                            </div>
-                        </li>
-                        <li class="fd-item">
-                            <div class="cell">
-                                <div>
-                                    <div class="fd-item_img">
-                                        <i class="u-icon">&#xe647;</i>
-                                    </div>
-                                </div>
-                                <div class="cell-bd">
-                                    <div class="fd-item_dialog">在下叶良辰，这是我的<a href="#">博客</a></div>
-                                </div>
-                                <div class="cell-ft"></div>
-                            </div>
-                        </li>
-                        <li class="fd-item">
-                            <div class="cell">
-                                <div>
-                                    <div class="fd-item_img">
-                                        <i class="u-icon">&#xe647;</i>
-                                    </div>
-                                </div>
-                                <div class="cell-bd">
-                                    <div class="fd-item_dialog">在下叶良辰，这是我的<a href="#">博客</a></div>
-                                </div>
-                                <div class="cell-ft"></div>
-                            </div>
-                        </li>
                         <li class="fd-item">
                             <div class="cell">
                                 <div>
@@ -252,15 +94,71 @@
                     </div>
                 </header>
             </div>
-            <div class="stage-view github"></div>
+            <div class="stage-view github">
+                <section class="github_bd">
+                    <div class="github-item github-item_0">
+                        <h3 class="github-item_tt">express-dir-route</h3>
+                        <div class="github-item_ct">
+                            <p>express-dir-route, This is a simple and small plugin for express. It's used to register routes base on files path.</p>
+                        </div>
+                    </div>
+                    <div class="github-item github-item_1">
+                        <h3 class="github-item_tt">express-dir-route</h3>
+                        <div class="github-item_ct">
+                            <p>express-dir-route, This is a simple and small plugin for express. It's used to register routes base on files path.</p>
+                        </div>
+                    </div>
+                    <div class="github-item github-item_2">
+                        <h3 class="github-item_tt">express-dir-route</h3>
+                        <div class="github-item_ct">
+                            <p>express-dir-route, This is a simple and small plugin for express. It's used to register routes base on files path.</p>
+                        </div>
+                        <footer class="github-item_ft cell">
+                            <div class="github-tag" title="语言">
+                                <i class="u-icon">&#xe605;</i>
+                                <span>Javascript</span>
+                            </div>
+                            <div class="github-tag">
+                                <i class="u-icon">&#xe645;</i>
+                                <span>1</span>
+                            </div>
+                            <div class="github-tag">
+                                <i class="u-icon">&#xe601;</i>
+                                <span>1</span>
+                            </div>
+                        </footer>
+                    </div>
+                    <div class="github-item github-item_3">
+                        <h3 class="github-item_tt">express-dir-route</h3>
+                        <div class="github-item_ct">
+                            <p>express-dir-route, This is a simple and small plugin for express. It's used to register routes base on files path.</p>
+                        </div>
+                    </div>
+                    <div class="github-item github-item_4">
+                        <h3 class="github-item_tt">express-dir-route</h3>
+                        <div class="github-item_ct">
+                            <p>express-dir-route, This is a simple and small plugin for express. It's used to register routes base on files path.</p>
+                        </div>
+                    </div>
+                </section>
+                <header class="github_hd cell">
+                    <div>
+                        <i class="u-icon">&#xe6cf;</i>
+                    </div>
+                    <div>
+                        <h2>Github 仓库</h2>
+                        <p>Github Repositories</p>
+                    </div>
+                </header>
+            </div>
         </section>
         <transition name="mask_anmt">
             <div class="mask" v-if="isShowMask" @click="eMaskClick"></div>
         </transition>
         <app-aside></app-aside>
-
     </div>
     <div id="tp">
+        <!--侧边栏-->
         <template id="tp_aside">
             <aside class="aside" :class="addAsideClass">
                 <nav class="aside_ct">
@@ -274,6 +172,54 @@
                 </nav>
                 <div class="aside-btn" @click="eCallAsideOut"></div>
             </aside>
+        </template>
+
+        <!--文章目录-->
+        <template id="tp_dir">
+            <section class="dir_bd">
+                <transition-group 
+                tag="ul" 
+                class="dir_ct" 
+                name="dir-item_anmt" 
+                mode="out-in"
+                :style="setTransform">
+                    <li class="dir-item cell" 
+                    v-for="item in list"  
+                    :key="item.contentUrl"
+                    @mouseover="eMouseover(item)">
+                        <div class="cell-hd dir-item_hd">
+                            <img v-if="item.imgSrc" 
+                            class="dir-item_img" 
+                            :src="item.imgSrc.replace(/^http[s]?:/,'')" />
+                        </div>
+                        <div class="cell-bd dir-item_ct">
+                            <h3>{{item.title}}</h3>
+                            <article>{{item.summary}}</article>
+                            <div class="dir-item_ft cell" >
+                                <div>
+                                    <i class="u-icon">&#xe645;</i>
+                                    <span>{{item.view}}</span>
+                                </div>
+                                <div>
+                                    <i class="u-icon">&#xe600;</i>
+                                    <span>{{item.time.replace(/[T+]/g,' ')}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="dir-item">
+                        <a class="dir-load-more_btn">加载更多</a>
+                    </li>
+                </transition-group>
+            </section>
+        </template>
+
+        <!--文章列表左侧底部信息-->
+        <template id="tp_dir-info">
+            <div>
+                <h3>{{title}}</h3>
+                <article>{{content}}</article>
+            </div>
         </template>
     </div>
     <script src="//cdn.bootcss.com/vue/2.0.0/vue.js"></script>

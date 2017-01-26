@@ -1,13 +1,8 @@
 var Ent = new Vue();
 
-; //原型链拓展
+; //配置
 (function() {
-    Array.prototype.removeItem = function(value) {
-        return this.join(';')
-            .replace(value, '')
-            .replace(/(^;*|;*$)/g, '')
-            .split(';');
-    }
+    // Vue.http.options.root = Blog.proxyHost;
 })();
 
 
@@ -85,38 +80,130 @@ var Ent = new Vue();
     })
 })();
 
+; //tp_dir
+(function() {
+    Vue.component('app-dir', {
+        template: '#tp_dir',
+        data: function() {
+            return {
+                list: [],
+                page: 1,
+                limit: 5,
+                type: 'u',
+                order_by: 'shared_at',
+                top: 0
+            }
+        },
+        computed: {
+            setTransform: function() {
+                return { 'transform': 'translate(0,y%)'.replace('y', this.top) }
+            }
+        },
+        methods: {
+            eMouseover: function(item) {
+                Ent.$emit('eHoverDirItem', item)
+            },
+            _GetList: function() {
+                this.$http.get(Blog.getList, {
+                    params: {
+                        id: Blog.jianshuId,
+                        page: this.page,
+                        order_by: this.order_by,
+                        type: this.type,
+                        limit: this.limit
+                    }
+                }).then(function(res) {
+                    this.list = this.list.concat(res.body);
+                }, function(err) {
+
+                })
+            },
+            _HandleWheel: function(e) {
+                var d = 10;
+                if (e.deltaY < 0) {
+                    d = -d;
+                }
+                this.top -= d;
+                if (this.top > 0) {
+                    this.top = 0;
+                }
+                if (this.top < -100) {
+                    this.top = -100;
+                }
+            },
+
+        },
+        mounted: function() {
+            var vm = this;
+            this._GetList();
+            Ent.$on('eWheelDirStage', this._HandleWheel);
+        }
+    })
+})();
+
+; //dir-info
+(function() {
+    Vue.component('app-dir-info', {
+        template: '#tp_dir-info',
+        data: function() {
+            return {
+                'title': '',
+                'content': ''
+            }
+        },
+        mounted: function() {
+            var vm = this;
+            Ent.$on('eHoverDirItem', function(item) {
+                vm.title = item.title;
+                vm.content = item.summary
+            })
+        }
+    })
+})();
+
 ; //main
 (function() {
     window.app = new Vue({
         el: '#app',
         data: {
             isShowMask: false,
-            addStageClass: [],
+            addStageClass: [
+                [],
+                {
+                    'mask-blur': false
+                }
+            ],
         },
         methods: {
             eMaskClick: function() {
-                this.addStageClass = this.addStageClass.removeItem(/mask-blur/g);
+                this.$set(this.addStageClass, 1, {
+                    'mask-blur': false
+                });
                 this.isShowMask = false;
                 Ent.$emit('eHideAside');
-
+            },
+            eWheelDirStage: function(e) {
+                Ent.$emit('eWheelDirStage', e);
             }
         },
         mounted: function() {
             var vm = this;
             Ent.$on('openDir', function() {
-                vm.addStageClass = ['stage-1']
+                this.$set(vm.addStageClass, 0, ['stage-1'])
             });
             Ent.$on('openFd', function() {
-                vm.addStageClass = ['stage-2']
+                this.$set(vm.addStageClass, 0, ['stage-2'])
             });
             Ent.$on('openGithub', function() {
-                vm.addStageClass = ['stage-3']
+                this.$set(vm.addStageClass, 0, ['stage-3'])
             });
             Ent.$on('openHomePage', function() {
-                vm.addStageClass = [];
+                this.$set(vm.addStageClass, 0, [])
             });
             Ent.$on('eCallAsideOut', function() {
-                vm.addStageClass.push('mask-blur');
+                this.$set(vm.addStageClass, 1, {
+                    'mask-blur': true
+                });
                 vm.isShowMask = true;
             })
         }
