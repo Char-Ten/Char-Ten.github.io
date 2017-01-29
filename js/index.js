@@ -141,7 +141,7 @@ var Ent = new Vue();
     })
 })();
 
-; //dir-info
+; //tp_dir-info
 (function() {
     Vue.component('app-dir-info', {
         template: '#tp_dir-info',

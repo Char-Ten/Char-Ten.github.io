@@ -7,7 +7,8 @@
     <link rel="stylesheet" href="./css/index.css" />
     <script>
         var Blog = {
-            getList: 'https://localhost/jianshu/article/ls',
+            getList: 'https://119.29.162.247/jianshu/article/ls',
+            getContent: 'https://119.29.162.247/jianshu/articel/ct',
             jianshuId: 'fd817497ee3c',
             githubUname: 'char-ten'
         };
@@ -220,6 +221,11 @@
                 <h3>{{title}}</h3>
                 <article>{{content}}</article>
             </div>
+        </template>
+
+        <!--文章视图-->
+        <template id="tp_article-view">
+            
         </template>
     </div>
     <script src="//cdn.bootcss.com/vue/2.0.0/vue.js"></script>
