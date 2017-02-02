@@ -17,7 +17,7 @@
 
 <body>
     <div id="app">
-        <section class="stage" :class="addStageClass">
+        <section class="stage " :class="addStageClass">
             <div class="stage-view">
                 <header class="hd-card">
                     <div class="hd-card_img">
@@ -96,52 +96,7 @@
                 </header>
             </div>
             <div class="stage-view github">
-                <section class="github_bd">
-                    <div class="github-item github-item_0">
-                        <h3 class="github-item_tt">express-dir-route</h3>
-                        <div class="github-item_ct">
-                            <p>express-dir-route, This is a simple and small plugin for express. It's used to register routes base on files path.</p>
-                        </div>
-                    </div>
-                    <div class="github-item github-item_1">
-                        <h3 class="github-item_tt">express-dir-route</h3>
-                        <div class="github-item_ct">
-                            <p>express-dir-route, This is a simple and small plugin for express. It's used to register routes base on files path.</p>
-                        </div>
-                    </div>
-                    <div class="github-item github-item_2">
-                        <h3 class="github-item_tt">express-dir-route</h3>
-                        <div class="github-item_ct">
-                            <p>express-dir-route, This is a simple and small plugin for express. It's used to register routes base on files path.</p>
-                        </div>
-                        <footer class="github-item_ft cell">
-                            <div class="github-tag" title="语言">
-                                <i class="u-icon">&#xe605;</i>
-                                <span>Javascript</span>
-                            </div>
-                            <div class="github-tag">
-                                <i class="u-icon">&#xe645;</i>
-                                <span>1</span>
-                            </div>
-                            <div class="github-tag">
-                                <i class="u-icon">&#xe601;</i>
-                                <span>1</span>
-                            </div>
-                        </footer>
-                    </div>
-                    <div class="github-item github-item_3">
-                        <h3 class="github-item_tt">express-dir-route</h3>
-                        <div class="github-item_ct">
-                            <p>express-dir-route, This is a simple and small plugin for express. It's used to register routes base on files path.</p>
-                        </div>
-                    </div>
-                    <div class="github-item github-item_4">
-                        <h3 class="github-item_tt">express-dir-route</h3>
-                        <div class="github-item_ct">
-                            <p>express-dir-route, This is a simple and small plugin for express. It's used to register routes base on files path.</p>
-                        </div>
-                    </div>
-                </section>
+                <app-git></app-git>
                 <header class="github_hd cell">
                     <div>
                         <i class="u-icon">&#xe6cf;</i>
@@ -157,6 +112,37 @@
             <div class="mask" v-if="isShowMask" @click="eMaskClick"></div>
         </transition>
         <app-aside></app-aside>
+        <!--<section class="atc">
+            <div class="atc-mask">
+                <div class="atc-mask_blur"></div>
+            </div>
+            <div class="atc-ct">
+                <article class="atc-vw">
+                    <header class="atc-vw_hd">
+                        <div class="atc-vw_mask"></div>
+                        <div class="atc-vw_hgroup">
+                            <h1 class="atc-vw_h1">这是一个标题</h1>
+                            <ul class="atc-vw_hinfo">
+                                <li>
+                                    <span>2017.01.10 11:07</span>
+                                </li>
+                                <li>
+                                    <span>字数</span>
+                                    <span>100</span>
+                                </li>
+                                <li>
+                                    <span>阅读</span>
+                                    <span>100</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </header>
+                    <section>
+                        <p>这是一个段落</p>
+                    </section>
+                </article>
+            </div>
+        </section>-->
     </div>
     <div id="tp">
         <!--侧边栏-->
@@ -223,9 +209,31 @@
             </div>
         </template>
 
-        <!--文章视图-->
-        <template id="tp_article-view">
-            
+        <!--github项目展示面板-->
+        <template id="tp_github">
+            <transition-group tag="section" name="list_anmt" mode="out-in" class="github_bd">
+                <a  class="github-item" 
+                v-for="item,i in filtedList"
+                :class="['github-item_'+i]" 
+                :href="item.html_url?item.html_url:null"
+                :key="item.id"
+                @click="eItemClick($event,item.index,i)">
+                    <h3 class="github-item_tt">{{item.name}}</h3>
+                    <div class="github-item_ct">
+                        <p>{{item.description?item.description:''}}</p>
+                    </div>
+                    <footer class="github-item_ft cell">
+                        <div class="github-tag" title="语言">
+                            <i class="u-icon">&#xe605;</i>
+                            <span>{{item.language}}</span>
+                        </div>
+                        <div class="github-tag">
+                            <i class="u-icon">&#xe601;</i>
+                            <span>{{item.stargazers_count}}</span>
+                        </div>
+                    </footer>
+                </a>
+            </transition-group>
         </template>
     </div>
     <script src="//cdn.bootcss.com/vue/2.0.0/vue.js"></script>

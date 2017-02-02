@@ -161,6 +161,62 @@ var Ent = new Vue();
     })
 })();
 
+; //tp_github
+(function() {
+    Vue.component('app-git', {
+        template: '#tp_github',
+        data: function() {
+            return {
+                index: 0,
+                githubList: [],
+            }
+        },
+        computed: {
+            filtedList: function() {
+                var i = this.index,
+                    vm = this;
+                var source = this.githubList,
+                    len = this.githubList.length,
+                    add = [-2, -1, 0, 1, 2];
+
+                var a = [];
+                add.forEach(function(item) {
+                    var j = i + item;
+                    if (j < 0) {
+                        j = len + item
+                    }
+                    if (j > len - 1) {
+                        j = item
+                    }
+                    if (j >= 0 && j < len) {
+                        source[j].index = j;
+                        a.push(source[j]);
+                    }
+                });
+                return a;
+            }
+        },
+        methods: {
+            eItemClick: function(e, index, i) {
+                if (index !== this.index) {
+                    e.preventDefault();
+                }
+                this.index = index;
+
+            }
+        },
+        mounted: function() {
+            this.$http
+                .get('https://api.github.com/users/:username/repos'.replace(':username', Blog.githubUname))
+                .then(function(res) {
+                    this.githubList = res.body;
+                }, function(err) {
+
+                });
+        }
+    })
+})();
+
 ; //main
 (function() {
     window.app = new Vue({

@@ -537,6 +537,7 @@ github
 }
 
 .github-item {
+    display: block;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -608,6 +609,20 @@ github
     margin-left: 15px;
     font-size: 13px;
     color: rgba(255, 255, 255, 0.5)
+}
+
+.list_anmt-move {
+    transition: all .5s;
+}
+
+.list_anmt-enter-active,
+.list_anmt-leave-active {
+    opacity: 1;
+}
+
+.list_anmt-enter,
+.list_anmt-leave-active {
+    opacity: 0;
 }
 
 
@@ -709,5 +724,97 @@ mask
 /*----------
 mask end
 ------------------------------------------
-mask
+atc
+-----------*/
+
+.atc,
+.atc-ct {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: #D3DCE6;
+}
+
+.atc-mask {
+    height: 150px;
+    width: 100%;
+    overflow: hidden;
+}
+
+.atc-mask_blur {
+    height: 170px;
+    width: 102%;
+    margin-top: -10px;
+    margin-left: -1%;
+    filter: blur(10px);
+    background-color: #58B7FF;
+    background-size: cover;
+    background-position: center;
+    /*background-image: url(//upload-images.jianshu.io/upload_images/2812131-eedd4eb54e8a38f2.png?imageMogr2/auto-orient/strip%7CimageView2/1/w/375/h/300)*/
+}
+
+.atc-ct {
+    overflow-y: auto;
+    background: none;
+}
+
+.atc-vw {
+    height: 1000px;
+    width: 100%;
+    max-width: 980px;
+    margin: 75px auto;
+    background: #fff;
+}
+
+.atc-vw>* {
+    padding: 25px;
+}
+
+.atc-vw_hd {
+    position: relative;
+    height: 200px;
+    padding: 0;
+    background-color: #58B7FF;
+    background-size: cover;
+    background-position: center;
+    /*background-image: url(//upload-images.jianshu.io/upload_images/2812131-eedd4eb54e8a38f2.png?imageMogr2/auto-orient/strip%7CimageView2/1/w/375/h/300)*/
+}
+
+.atc-vw_mask {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+}
+
+.atc-vw_hgroup {
+    position: absolute;
+    bottom: 0;
+    padding: 25px;
+    vertical-align: bottom;
+    color: #fff;
+}
+
+.atc-vw_hinfo {
+    list-style: none;
+    font-size: 0.8em;
+    opacity: 0.5;
+}
+
+.atc-vw_hinfo li {
+    float: left;
+    height: 30px;
+    line-height: 30px;
+    margin-right: 15px;
+}
+
+
+/*----------
+atc end
+------------------------------------------
+atc
 -----------*/
