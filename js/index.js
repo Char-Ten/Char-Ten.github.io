@@ -186,7 +186,7 @@ var Ent = new Vue();
                         j = len + item
                     }
                     if (j > len - 1) {
-                        j = item
+                        j = item - 1;
                     }
                     if (j >= 0 && j < len) {
                         source[j].index = j;
