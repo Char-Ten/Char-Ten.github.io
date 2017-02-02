@@ -203,6 +203,19 @@ var Ent = new Vue();
                 }
                 this.index = index;
 
+            },
+            _HandleWheel: function(e) {
+                if (e.deltaY > 0) {
+                    this.index++;
+                } else {
+                    this.index--;
+                }
+                if (this.index > this.githubList.length - 1) {
+                    this.index = 0;
+                }
+                if (this.index < 0) {
+                    this.index = this.githubList.length - 1;
+                }
             }
         },
         mounted: function() {
@@ -213,6 +226,7 @@ var Ent = new Vue();
                 }, function(err) {
 
                 });
+            Ent.$on('eWheelGitHubStage', this._HandleWheel)
         }
     })
 })();
@@ -240,6 +254,9 @@ var Ent = new Vue();
             },
             eWheelDirStage: function(e) {
                 Ent.$emit('eWheelDirStage', e);
+            },
+            eWheelGitHubStage: function(e) {
+                Ent.$emit('eWheelGitHubStage', e);
             }
         },
         mounted: function() {
