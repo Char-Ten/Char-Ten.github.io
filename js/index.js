@@ -191,7 +191,7 @@ var Ent = new Vue();
         },
         mounted: function() {
             this.$http.get('./link.json').then(function(res) {
-                this.res = JSON.parse(res.body);
+                this.res = res.body;
                 this._Init();
 
             }, function(err) {
