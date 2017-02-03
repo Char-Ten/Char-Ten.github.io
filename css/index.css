@@ -506,6 +506,20 @@ fd
     border-color: #13CE66 transparent transparent #13CE66;
 }
 
+.fd_anmt-enter-active,
+.fd_anmt-leave-active {
+    transition: all .5s;
+    transform: translate(0, 0);
+    opacity: 1
+}
+
+.fd_anmt-enter,
+.fd_anmt-leave-active {
+    transition: all .5s;
+    transform: translate(0, 100%);
+    opacity: 0
+}
+
 
 /*----------
 fd end

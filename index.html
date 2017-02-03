@@ -70,21 +70,7 @@
             </div>
             <div class="stage-view fd">
                 <section class="fd_bd">
-                    <ul class="fd_ct">
-                        <li class="fd-item">
-                            <div class="cell">
-                                <div>
-                                    <div class="fd-item_img">
-                                        <i class="u-icon">&#xe647;</i>
-                                    </div>
-                                </div>
-                                <div class="cell-bd">
-                                    <div class="fd-item_dialog">在下叶良辰，这是我的<a href="#">博客</a></div>
-                                </div>
-                                <div class="cell-ft"></div>
-                            </div>
-                        </li>
-                    </ul>
+                    <app-link></app-link>
                 </section>
                 <header class="fd_hd">
                     <div class="fd_hd-ct">
@@ -233,6 +219,28 @@
                         </div>
                     </footer>
                 </a>
+            </transition-group>
+        </template>
+
+        <!--友情链接列表-->
+        <template id="tp_fd-link">
+            <transition-group tag="ul" class="fd_ct"
+            name="fd_anmt">
+                <li class="fd-item"
+                v-for="item,i in list"
+                :key="i">
+                    <div class="cell">
+                        <div>
+                            <div class="fd-item_img">
+                                <i class="u-icon">&#xe647;</i>
+                            </div>
+                        </div>
+                        <div class="cell-bd">
+                            <div class="fd-item_dialog">在下{{item.name}}，这是我的<a :href="item.href">{{item.type}}</a></div>
+                        </div>
+                        <div class="cell-ft"></div>
+                    </div>
+                </li>
             </transition-group>
         </template>
     </div>

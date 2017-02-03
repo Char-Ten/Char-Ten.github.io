@@ -161,6 +161,50 @@ var Ent = new Vue();
     })
 })();
 
+; //tp_fd-link
+(function() {
+    Vue.component('app-link', {
+        template: '#tp_fd-link',
+        data: function() {
+            return {
+                list: [{}],
+                res: []
+            }
+        },
+        methods: {
+            _Init: function() {
+                this.list = [];
+                var vm = this;
+                var timer, index = 0,
+                    len = this.res.length;
+                loop();
+
+                function loop() {
+                    clearTimeout(timer);
+                    if (index < len) {
+                        vm.list.push(vm.res[index]);
+                        index++;
+                        timer = setTimeout(loop, 500);
+                    }
+                }
+            }
+        },
+        mounted: function() {
+            this.$http.get('./link.json').then(function(res) {
+                this.res = JSON.parse(res.body);
+                this._Init();
+
+            }, function(err) {
+                //err handle
+            });
+            var vm = this;
+            Ent.$on('openFd', function() {
+                vm._Init();
+            })
+        }
+    })
+})();
+
 ; //tp_github
 (function() {
     Vue.component('app-git', {
