@@ -1,8 +1,8 @@
 @font-face {
     font-family: 'iconfont';
     /* project id 191130 */
-    src: url('//at.alicdn.com/t/font_ml492ta7ndeipb9.eot');
-    src: url('//at.alicdn.com/t/font_ml492ta7ndeipb9.eot?#iefix') format('embedded-opentype'), url('//at.alicdn.com/t/font_ml492ta7ndeipb9.woff') format('woff'), url('//at.alicdn.com/t/font_ml492ta7ndeipb9.ttf') format('truetype'), url('//at.alicdn.com/t/font_ml492ta7ndeipb9.svg#iconfont') format('svg');
+    src: url('//at.alicdn.com/t/font_9dmr294maco0qkt9.eot');
+    src: url('//at.alicdn.com/t/font_9dmr294maco0qkt9.eot?#iefix') format('embedded-opentype'), url('//at.alicdn.com/t/font_9dmr294maco0qkt9.woff') format('woff'), url('//at.alicdn.com/t/font_9dmr294maco0qkt9.ttf') format('truetype'), url('//at.alicdn.com/t/font_9dmr294maco0qkt9.svg#iconfont') format('svg');
 }
 
 * {
@@ -324,6 +324,11 @@ dir
     box-shadow: 25px 50px 50px rgba(0, 0, 0, 0.5);
     transition: all .5s;
     background: rgba(255, 255, 255, 0.8);
+}
+
+.dir-item_a:visited,
+.dir-item_a:link {
+    color: #000;
 }
 
 .dir-item_hd {
@@ -741,6 +746,12 @@ mask end
 atc
 -----------*/
 
+.atc {
+    transform: translate(-100%, 0);
+    opacity: 0;
+    transition: all .5s;
+}
+
 .atc,
 .atc-ct {
     position: fixed;
@@ -752,10 +763,17 @@ atc
     background: #D3DCE6;
 }
 
+.atc-show {
+    opacity: 1;
+    transform: translate(0, 0)
+}
+
 .atc-mask {
     height: 150px;
     width: 100%;
     overflow: hidden;
+    opacity: 1;
+    background-color: #58B7FF;
 }
 
 .atc-mask_blur {
@@ -763,11 +781,11 @@ atc
     width: 102%;
     margin-top: -10px;
     margin-left: -1%;
+    opacity: 0.8;
     filter: blur(10px);
     background-color: #58B7FF;
     background-size: cover;
     background-position: center;
-    /*background-image: url(//upload-images.jianshu.io/upload_images/2812131-eedd4eb54e8a38f2.png?imageMogr2/auto-orient/strip%7CimageView2/1/w/375/h/300)*/
 }
 
 .atc-ct {
@@ -776,7 +794,6 @@ atc
 }
 
 .atc-vw {
-    height: 1000px;
     width: 100%;
     max-width: 980px;
     margin: 75px auto;
@@ -794,7 +811,6 @@ atc
     background-color: #58B7FF;
     background-size: cover;
     background-position: center;
-    /*background-image: url(//upload-images.jianshu.io/upload_images/2812131-eedd4eb54e8a38f2.png?imageMogr2/auto-orient/strip%7CimageView2/1/w/375/h/300)*/
 }
 
 .atc-vw_mask {
@@ -824,6 +840,64 @@ atc
     height: 30px;
     line-height: 30px;
     margin-right: 15px;
+}
+
+.atc-ft h5 {
+    padding-top: 5px;
+    border-top: 1px solid #99A9BF;
+}
+
+.atc-link {
+    padding: 15px 0;
+    list-style: none;
+}
+
+.atc-link,
+.atc-link a:visited {
+    margin: 15px 0;
+    color: #58B7FF;
+    font-size: 14px;
+}
+
+.atc-rdm:hover {
+    text-decoration: underline;
+}
+
+.atc-link li {
+    margin-top: 15px;
+}
+
+.atc-link_r {
+    float: right;
+}
+
+.atc-bd {
+    font-size: 14px;
+}
+
+.atc-bd img {
+    width: 100%;
+    margin: 15px 0;
+}
+
+.atc-bd p,
+.atc-bd li {
+    margin: 15px 0;
+}
+
+.atc-bd pre {
+    padding: 15px;
+    font-size: 16px;
+    overflow-x: auto;
+}
+
+.atc-bd pre,
+.atc-bd pre code {
+    background: #D3DCE6;
+}
+
+.atc-bd pre * {
+    font-family: 'Courier New'
 }
 
 

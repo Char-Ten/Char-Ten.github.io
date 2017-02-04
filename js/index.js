@@ -23,7 +23,7 @@ var Ent = new Vue();
         if (hash === '#/github') {
             return Ent.$emit('openGithub');
         }
-        if (/#\/article\/\d+/g.test(hash)) {
+        if (/#\/article\/\w+/g.test(hash)) {
             return Ent.$emit('openAtricle', hash.split('#/article/')[1])
         }
         Ent.$emit('openHomePage');
@@ -131,6 +131,13 @@ var Ent = new Vue();
                     this.top = -100;
                 }
             },
+            _ReplaceHref: function(url) {
+                var id = url.split('?id=')[1];
+                return '#/article/' + id
+            },
+            eClick: function(item) {
+                Ent.$emit('sendAtcItem', item);
+            }
 
         },
         mounted: function() {
@@ -275,6 +282,101 @@ var Ent = new Vue();
     })
 })();
 
+; //tp_atc
+(function() {
+    Vue.component('app-atc', {
+        template: '#tp_atc',
+        data: function() {
+            return {
+                addAtcClass: [],
+                info: {},
+                views: 0,
+                list: []
+            }
+        },
+        computed: {
+            imgSrc: function() {
+                var str = this.info.content || '';
+                var url = str.match(/<img src="http:(.+)" .*>/);
+                if (url) {
+                    return url[1];
+                }
+                return ''
+            },
+            backgroundImage: function() {
+                return { 'background-image': 'url(*)'.replace('*', this.imgSrc) }
+            },
+            content: function() {
+                return this.info.content
+            }
+        },
+        methods: {
+            _ReplaceHref: function(url) {
+                var id = url.split('?id=')[1];
+                return '#/article/' + id
+            },
+            _HandleOpened: function(id) {
+                this.addAtcClass = ['atc-show']
+                this.$http.get(Blog.getContent, {
+                    params: {
+                        id: id
+                    }
+                }).then(function(res) {
+                    this.info = res.body;
+                    document.title = this.info.title;
+                    return res.body.tag
+                }).then(function(tag) {
+                    return this.$http.get(Blog.getTag, {
+                        params: {
+                            id: Blog.jianshuId
+                        }
+                    })
+                }).then(function(res) {
+
+                    var vm = this,
+                        list = [],
+                        tagId;
+                    res.body.notebooks.forEach(function(item) {
+                        if (item.name === vm.info.tag) {
+                            tagId = item.id
+                        }
+                    });
+                    return tagId;
+                }).then(function(tagId) {
+                    return this.$http.get(Blog.getList, {
+                        params: {
+                            id: tagId,
+                            page: 1,
+                            order_by: 'added_at',
+                            type: 'nb',
+                            limit: 5
+                        }
+                    })
+                }).then(function(res) {
+                    this.list = res.body
+                })
+            },
+            _CloseAtc: function() {
+                this.addAtcClass = []
+            },
+
+        },
+        mounted: function() {
+            Ent.$on('openAtricle', this._HandleOpened);
+            Ent.$on('hashchange', this._CloseAtc);
+        },
+        updated: function() {
+            var code = document.getElementsByTagName('code');
+            for (var i = 0; i < code.length; i++) {
+                if (code[i].className) {
+                    hljs.highlightBlock(code[i]);
+                }
+            }
+        }
+
+    })
+})();
+
 ; //main
 (function() {
     window.app = new Vue({
@@ -306,15 +408,19 @@ var Ent = new Vue();
         mounted: function() {
             var vm = this;
             Ent.$on('openDir', function() {
+                document.title = '文章目录';
                 this.$set(vm.addStageClass, 0, ['stage-1'])
             });
             Ent.$on('openFd', function() {
+                document.title = '友情链接';
                 this.$set(vm.addStageClass, 0, ['stage-2'])
             });
             Ent.$on('openGithub', function() {
+                document.title = 'GitHub项目';
                 this.$set(vm.addStageClass, 0, ['stage-3'])
             });
             Ent.$on('openHomePage', function() {
+                document.title = '挺问原 charTen\'s blog ';
                 this.$set(vm.addStageClass, 0, [])
             });
             Ent.$on('eCallAsideOut', function() {

@@ -3,12 +3,19 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>视图</title>
+    <meta name="description" content="这是挺问原的个人博客！This is CharTen's Blog!">
+    <meta name="keywords" content="挺问原,挺问中原,挺问中圆,博客,前端,web,HTML,CSS,JS,Javascript,nodejs,死宅,二次元,程序员">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>挺问原 charTen\'s blog</title>
+    <Link rel="Shortcut Icon" href="./image/hd.png" \>
     <link rel="stylesheet" href="./css/index.css" />
+    <link href="http://cdn.bootcss.com/highlight.js/9.9.0/styles/googlecode.min.css" rel="stylesheet">
     <script>
         var Blog = {
             getList: 'https://char10.space/jianshu/article/ls',
-            getContent: 'https://char10.space/jianshu/articel/ct',
+            getContent: 'https://char10.space/jianshu/article/ct',
+            getTag: 'https://char10.space/jianshu/article/tag',
             jianshuId: 'fd817497ee3c',
             githubUname: 'char-ten'
         };
@@ -21,11 +28,11 @@
             <div class="stage-view">
                 <header class="hd-card">
                     <div class="hd-card_img">
-                        <img class="hd-card_img-item" src="" />
+                        <img class="hd-card_img-item" src="./image/hd.png" />
                     </div>
                     <div class="hd-card_info">
-                        <h1>dalao你的名字</h1>
-                        <p class="hd-card_info-sum">dalao你想对大家说的话</p>
+                        <h1>挺问原</h1>
+                        <p class="hd-card_info-sum">苟利国家生死以！</p>
                     </div>
                     <nav class="hd-card_nav">
                         <a>
@@ -98,37 +105,7 @@
             <div class="mask" v-if="isShowMask" @click="eMaskClick"></div>
         </transition>
         <app-aside></app-aside>
-        <!--<section class="atc">
-            <div class="atc-mask">
-                <div class="atc-mask_blur"></div>
-            </div>
-            <div class="atc-ct">
-                <article class="atc-vw">
-                    <header class="atc-vw_hd">
-                        <div class="atc-vw_mask"></div>
-                        <div class="atc-vw_hgroup">
-                            <h1 class="atc-vw_h1">这是一个标题</h1>
-                            <ul class="atc-vw_hinfo">
-                                <li>
-                                    <span>2017.01.10 11:07</span>
-                                </li>
-                                <li>
-                                    <span>字数</span>
-                                    <span>100</span>
-                                </li>
-                                <li>
-                                    <span>阅读</span>
-                                    <span>100</span>
-                                </li>
-                            </ul>
-                        </div>
-                    </header>
-                    <section>
-                        <p>这是一个段落</p>
-                    </section>
-                </article>
-            </div>
-        </section>-->
+        <app-atc></app-atc>
     </div>
     <div id="tp">
         <!--侧边栏-->
@@ -156,29 +133,33 @@
                 name="dir-item_anmt" 
                 mode="out-in"
                 :style="setTransform">
-                    <li class="dir-item cell" 
+                    <li class="dir-item " 
                     v-for="item in list"  
                     :key="item.contentUrl"
                     @mouseover="eMouseover(item)">
-                        <div class="cell-hd dir-item_hd">
-                            <img v-if="item.imgSrc" 
-                            class="dir-item_img" 
-                            :src="item.imgSrc.replace(/^http[s]?:/,'')" />
-                        </div>
-                        <div class="cell-bd dir-item_ct">
-                            <h3>{{item.title}}</h3>
-                            <article>{{item.summary}}</article>
-                            <div class="dir-item_ft cell" >
-                                <div>
-                                    <i class="u-icon">&#xe645;</i>
-                                    <span>{{item.view}}</span>
-                                </div>
-                                <div>
-                                    <i class="u-icon">&#xe600;</i>
-                                    <span>{{item.time.replace(/[T+]/g,' ')}}</span>
+                        <a class="cell dir-item_a"
+                        :href="_ReplaceHref(item.contentUrl)"
+                        @click="eClick(item)">
+                            <div class="cell-hd dir-item_hd">
+                                <img v-if="item.imgSrc" 
+                                class="dir-item_img" 
+                                :src="item.imgSrc.replace(/^http[s]?:/,'')" />
+                            </div>
+                            <div class="cell-bd dir-item_ct">
+                                <h3>{{item.title}}</h3>
+                                <article>{{item.summary}}</article>
+                                <div class="dir-item_ft cell" >
+                                    <div>
+                                        <i class="u-icon">&#xe645;</i>
+                                        <span>{{item.view}}</span>
+                                    </div>
+                                    <div>
+                                        <i class="u-icon">&#xe600;</i>
+                                        <span>{{item.time.replace(/[T+]/g,' ')}}</span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        </a>
                     </li>
                     <li class="dir-item">
                         <a class="dir-load-more_btn">加载更多</a>
@@ -243,7 +224,55 @@
                 </li>
             </transition-group>
         </template>
+
+        <!--文章视图-->
+        <template id="tp_atc">
+            <section class="atc" :class="addAtcClass">
+                <div class="atc-mask">
+                    <div class="atc-mask_blur" :style="backgroundImage"></div>
+                </div>
+                <div class="atc-ct">
+                    <article class="atc-vw">
+                        <header class="atc-vw_hd" :style="backgroundImage">
+                            <div class="atc-vw_mask"></div>
+                            <div class="atc-vw_hgroup">
+                                <h1 class="atc-vw_h1">{{info.title}}</h1>
+                                <ul class="atc-vw_hinfo">
+                                    <li>
+                                        <span>{{info.time}}</span>
+                                    </li>
+                                    <li>
+                                        <span>字数</span>
+                                        <span>{{info.wordage}}</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </header>
+                        <section class="atc-bd" v-html="content"></section>
+                        <footer class="atc-ft">
+                            <h5>更多文章</h5>
+                            <ul class="atc-link">
+                                <li v-for="item in list">
+                                    <a class="atc-rdm" :href="_ReplaceHref(item.contentUrl)" target="_blank">{{item.title}}</a>
+                                </li>
+                            </ul>
+                            <div class="atc-link">
+                                <a href="#/list">
+                                    <i class="u-icon">&#xe612;</i>
+                                    <span>返回目录</span>
+                                </a>
+                                <a class="atc-link_r">
+                                    <i class="u-icon">&#xe617;</i>
+                                    <span>留言</span>
+                                </a>
+                            </div>
+                        </footer>
+                    </article>
+                </div>
+            </section>
+        </template>
     </div>
+    <script src="//cdn.bootcss.com/highlight.js/9.9.0/highlight.min.js"></script>
     <script src="//cdn.bootcss.com/vue/2.0.0/vue.js"></script>
     <script src="//cdn.bootcss.com/vue-resource/1.0.3/vue-resource.min.js"></script>
     <script src="./js/index.js"></script>
