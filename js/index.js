@@ -455,6 +455,7 @@ var Ent = new Vue();
                 Ent.$emit('eWheelGitHubStage', e);
             },
             eTouchStartGithubStage: function(e) {
+                e.preventDefault();
                 Ent.$emit('eTouchStartGithubStage', e)
             },
             eTouchEndtGithubStage: function(e) {
