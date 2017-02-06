@@ -1,4 +1,7 @@
 @media screen and (max-width:980px) {
+    .mask-blur {
+        filter: blur(0)
+    }
     /*----------
     hd
     -----------*/
