@@ -238,7 +238,7 @@
                 </div>
                 <div class="atc-ct">
                     <article class="atc-vw">
-                        <header class="atc-vw_hd" :style="backgroundImage">
+                        <header class="atc-vw_hd" :style="backgroundImage"  :id="atcId">
                             <div class="atc-vw_mask"></div>
                             <div class="atc-vw_hgroup">
                                 <h1 class="atc-vw_h1">{{info.title}}</h1>
@@ -258,7 +258,9 @@
                             <h5>更多文章</h5>
                             <ul class="atc-link">
                                 <li v-for="item in list">
-                                    <a class="atc-rdm" :href="_ReplaceHref(item.contentUrl)" target="_blank">{{item.title}}</a>
+                                    <a class="atc-rdm" target="_blank"
+                                    :href="_ReplaceHref(item.contentUrl)"
+                                    @click="eClickMoreAtc(item.contentUrl)">{{item.title}}</a>
                                 </li>
                             </ul>
                             <div class="atc-link">

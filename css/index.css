@@ -833,7 +833,7 @@ atc
 
 .atc-vw_hd {
     position: relative;
-    height: 200px;
+    min-height: 200px;
     padding: 0;
     background-color: #58B7FF;
     background-size: cover;

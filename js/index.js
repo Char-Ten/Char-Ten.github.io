@@ -337,7 +337,8 @@ var Ent = new Vue();
                 addAtcClass: [],
                 info: {},
                 views: 0,
-                list: []
+                list: [],
+                atcId: ''
             }
         },
         computed: {
@@ -357,6 +358,9 @@ var Ent = new Vue();
             }
         },
         methods: {
+            eClickMoreAtc: function(url) {
+                this.atcId = this._ReplaceHref(url).replace('#', '')
+            },
             _ReplaceHref: function(url) {
                 var id = url.split('?id=')[1];
                 return '#/article/' + id

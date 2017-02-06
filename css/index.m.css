@@ -106,6 +106,9 @@
         margin: 0 auto;
         margin-bottom: 75px;
     }
+    .atc-vw_hgroup {
+        position: relative;
+    }
     .atc-bd {
         padding: 15px;
     }
