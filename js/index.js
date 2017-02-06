@@ -91,7 +91,9 @@ var Ent = new Vue();
                 limit: 5,
                 type: 'u',
                 order_by: 'shared_at',
-                top: 0
+                top: 0,
+                isLoadMore: true,
+                addLoadMoreClass: []
             }
         },
         computed: {
@@ -113,7 +115,12 @@ var Ent = new Vue();
                         limit: this.limit
                     }
                 }).then(function(res) {
-                    this.list = this.list.concat(res.body);
+                    if (res.body.length) {
+                        this.list = this.list.concat(res.body);
+                    } else {
+                        this.addLoadMoreClass = ['dir-load-more_btn-null ']
+                        this.isLoadMore = false;
+                    }
                 }, function(err) {
 
                 })
@@ -137,6 +144,12 @@ var Ent = new Vue();
             },
             eClick: function(item) {
                 Ent.$emit('sendAtcItem', item);
+            },
+            eLoadMore: function() {
+                if (this.isLoadMore) {
+                    this.page++;
+                    this._GetList();
+                }
             }
 
         },
@@ -220,6 +233,7 @@ var Ent = new Vue();
             return {
                 index: 0,
                 githubList: [],
+                touchStartY: 0
             }
         },
         computed: {
@@ -255,6 +269,15 @@ var Ent = new Vue();
                 this.index = index;
 
             },
+            _GetGithubList: function() {
+                this.$http
+                    .get('https://api.github.com/users/:username/repos'.replace(':username', Blog.githubUname))
+                    .then(function(res) {
+                        this.githubList = res.body;
+                    }, function(err) {
+
+                    });
+            },
             _HandleWheel: function(e) {
                 if (e.deltaY > 0) {
                     this.index++;
@@ -267,17 +290,40 @@ var Ent = new Vue();
                 if (this.index < 0) {
                     this.index = this.githubList.length - 1;
                 }
+            },
+            _HandleTouchStart: function(e) {
+                this.touchStartY = e.touches[0].clientY
+            },
+            _HandleTouchEnd: function(e) {
+                var d = this.touchStartY - e.changedTouches[0].clientY;
+                var level = parseInt(Math.abs(d) / 100);
+                var len = this.githubList.length;
+                if (level === 0) {
+                    level = 1;
+                }
+                if (level > 2) {
+                    level = 2;
+                }
+                if (d > 0) {
+                    this.index += level;
+                }
+                if (d < 0) {
+                    this.index -= level;
+                }
+                if (this.index > len - 1) {
+                    this.index = this.index - len;
+                }
+                //-2 -1 0 1 2 3 4
+                if (this.index < 0) {
+                    this.index = len + this.index;
+                }
             }
         },
         mounted: function() {
-            this.$http
-                .get('https://api.github.com/users/:username/repos'.replace(':username', Blog.githubUname))
-                .then(function(res) {
-                    this.githubList = res.body;
-                }, function(err) {
-
-                });
-            Ent.$on('eWheelGitHubStage', this._HandleWheel)
+            this._GetGithubList();
+            Ent.$on('eWheelGitHubStage', this._HandleWheel);
+            Ent.$on('eTouchStartGithubStage', this._HandleTouchStart);
+            Ent.$on('eTouchEndGithubStage', this._HandleTouchEnd);
         }
     })
 })();
@@ -403,6 +449,12 @@ var Ent = new Vue();
             },
             eWheelGitHubStage: function(e) {
                 Ent.$emit('eWheelGitHubStage', e);
+            },
+            eTouchStartGithubStage: function(e) {
+                Ent.$emit('eTouchStartGithubStage', e)
+            },
+            eTouchEndtGithubStage: function(e) {
+                Ent.$emit('eTouchEndGithubStage', e)
             }
         },
         mounted: function() {

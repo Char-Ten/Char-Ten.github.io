@@ -7,10 +7,12 @@
     <meta name="keywords" content="挺问原,挺问中原,挺问中圆,博客,前端,web,HTML,CSS,JS,Javascript,nodejs,死宅,二次元,程序员">
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
     <title>挺问原 charTen\'s blog</title>
-    <Link rel="Shortcut Icon" href="./image/hd.png" \>
+    <Link rel="Shortcut Icon" href="./image/hd.png" />
     <link rel="stylesheet" href="./css/index.css" />
-    <link href="//cdn.bootcss.com/highlight.js/9.9.0/styles/googlecode.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="./css/index.m.css" />
+    <link href="//cdn.bootcss.com/highlight.js/9.9.0/styles/atom-one-dark.min.css" rel="stylesheet">
     <script>
         var Blog = {
             getList: 'https://char10.space/jianshu/article/ls',
@@ -47,7 +49,7 @@
                             <i class="u-icon">&#xe647;</i>
                             <span>友链</span>
                         </a>
-                        <a>
+                        <a href="#/github">
                             <i class="u-icon">&#xe6cf;</i>
                             <span>GitHub</span>
                         </a>
@@ -88,7 +90,7 @@
                     </div>
                 </header>
             </div>
-            <div class="stage-view github" @mousewheel="eWheelGitHubStage($event)">
+            <div class="stage-view github" @mousewheel="eWheelGitHubStage($event)" @touchstart="eTouchStartGithubStage($event)" @touchend="eTouchEndtGithubStage($event)">
                 <app-git></app-git>
                 <header class="github_hd cell">
                     <div>
@@ -161,8 +163,11 @@
                             </div>
                         </a>
                     </li>
-                    <li class="dir-item">
-                        <a class="dir-load-more_btn">加载更多</a>
+                    <li class="dir-item dir-loadmore" key="'loadMore'">
+                        <a class="dir-load-more_btn"
+                        :class="addLoadMoreClass"
+                        @click="eLoadMore"
+                        >{{isLoadMore?'加载更多':'没有更多'}}</a>
                     </li>
                 </transition-group>
             </section>
