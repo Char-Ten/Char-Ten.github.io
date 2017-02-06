@@ -142,6 +142,7 @@ hd-card
     cursor: pointer;
 }
 
+.hd-card_nav a:link,
 .hd-card_nav a:visited {
     color: inherit;
 }
