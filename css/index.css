@@ -482,10 +482,6 @@ fd
     flex-direction: row-reverse;
 }
 
-.fd-item:nth-child(2n) .cell-bd {
-    text-align: right;
-}
-
 .fd-item_img {
     position: relative;
     height: 50px;
