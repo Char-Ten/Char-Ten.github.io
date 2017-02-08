@@ -14,6 +14,17 @@
     <link rel="stylesheet" href="./css/index.m.css" />
     <link href="//cdn.bootcss.com/highlight.js/9.9.0/styles/atom-one-dark.min.css" rel="stylesheet">
     <script>
+        if (isIE()) {
+            location.href = './IE.html'
+        }
+
+        function isIE() { //ie?  
+            if (!!window.ActiveXObject || "ActiveXObject" in window)
+                return true;
+            else
+                return false;
+        }
+
         var Blog = {
             getList: 'https://char10.space/jianshu/article/ls',
             getContent: 'https://char10.space/jianshu/article/ct',
@@ -27,7 +38,7 @@
 <body>
     <div id="app">
         <section class="stage " :class="addStageClass">
-            <div class="stage-view">
+            <div class="stage-view hd">
                 <header class="hd-card">
                     <div class="hd-card_img">
                         <img class="hd-card_img-item" src="./image/hd.png" />
@@ -65,7 +76,7 @@
                     <p class="u-en">ARTICLE LIST</p>
                     <h2>文章目录</h2>
                     <fieldset class="dir_hd-info">
-                        <legend>
+                        <legend align="center">
                             <p>这里从来不搞大新闻</p>
                             <p class="u-sm">NEVER MAKE BIG NEWS HERE</p>
                         </legend>
@@ -280,7 +291,7 @@
         </template>
     </div>
     <script src="//cdn.bootcss.com/highlight.js/9.9.0/highlight.min.js"></script>
-    <script src="//cdn.bootcss.com/vue/2.0.0/vue.min.js"></script>
+    <script src="//cdn.bootcss.com/vue/2.0.0/vue.js"></script>
     <script src="//cdn.bootcss.com/vue-resource/1.0.3/vue-resource.min.js"></script>
     <script src="./js/index.js"></script>
 </body>

@@ -29,8 +29,14 @@ body,
     overflow: hidden;
 }
 
+body {
+    background-image: url('../image/bg.png');
+    background-size: cover;
+}
+
 #app {
-    background: #f5f5f5
+    opacity: 0.9;
+    background: rgba(255, 255, 255, 0.8);
 }
 
 h1 {
@@ -51,6 +57,10 @@ blockquote {
     padding: 5px;
     border-left: 5px solid #C0CCDA;
     background: #EFF2F7;
+}
+
+legend {
+    text-align: center;
 }
 
 
@@ -88,6 +98,10 @@ stage end
 hd-card
 -----------*/
 
+.hd {
+    background: linear-gradient(#20A0FF, #13CE66);
+}
+
 .hd-card {
     position: absolute;
     left: 50%;
@@ -97,8 +111,7 @@ hd-card
     margin-left: -135px;
     transform: translate(0, 50%);
     text-align: center;
-    background: #f5f5f5;
-    color: #666;
+    color: #fff;
     overflow: hidden;
 }
 
@@ -145,6 +158,10 @@ hd-card
 .hd-card_nav a:link,
 .hd-card_nav a:visited {
     color: inherit;
+}
+
+.hd-card_nav a:hover {
+    background: rgba(255, 255, 255, 0.2)
 }
 
 .hd-card_nav span {
@@ -253,8 +270,9 @@ dir
 .dir {
     -webkit-perspective: 500;
     perspective: 500;
-    background: #66ccff;
-    background: linear-gradient(#13CE66, #0d1a44);
+    /*background: #66ccff;*/
+    /*background: linear-gradient(#13CE66, #0d1a44);*/
+    background: linear-gradient( #13CE66, #20A0FF);
 }
 
 .dir_hd {
@@ -262,6 +280,7 @@ dir
     width: 50%;
     height: 100%;
     text-align: center;
+    transform-origin: left;
     transform: rotateY(25deg) translateY(25%);
 }
 
@@ -293,13 +312,14 @@ dir
 .dir_hd .u-sm {
     font-family: 'Courier New', Courier, monospace;
     font-weight: 100;
-    color: #99A9BF;
+    color: #f5f5f5;
 }
 
 .dir_hd-info {
     display: inline-block;
     padding: 5px;
-    color: #99A9BF;
+    color: #fff;
+    border-color: #fff;
     font-weight: 100;
 }
 
@@ -314,8 +334,6 @@ dir
 }
 
 .dir_ct {
-    -webkit-perspective: 500;
-    perspective: 500;
     list-style: none;
     transition: all .5s;
 }
@@ -325,11 +343,11 @@ dir
     padding: 10px;
     border-radius: 5px;
     margin: 15px;
-    background: rgba(255, 255, 255, 0.2);
+    color: #fff;
+    background: rgba(255, 255, 255, 0.5);
 }
 
 .dir-item:hover {
-    transform: translateZ(50px);
     cursor: pointer;
     box-shadow: 25px 50px 50px rgba(0, 0, 0, 0.5);
     transition: all .5s;
@@ -351,6 +369,7 @@ dir
     position: relative;
     padding-bottom: 50px;
     margin-left: 15px;
+    color: #0d1a44
 }
 
 .dir-item_ft {
@@ -394,7 +413,8 @@ dir
     }
 }
 
-.dir-item_anmt-enter-active,
+
+/*.dir-item_anmt-enter-active,
 .dir-item_anmt-leave-active {
     transition: all .5s;
     opacity: 0;
@@ -405,7 +425,7 @@ dir
 .dir-item_anmt-leave-active {
     opacity: 1;
     transform: translate(0, 0)
-}
+}*/
 
 .dir-item_anmt-move {
     transition: all .5s;
@@ -418,7 +438,9 @@ dir end
 fd
 -----------*/
 
-.fd {}
+.fd {
+    background: rgba(177, 255, 212, 0.5)
+}
 
 .fd_hd {
     position: relative;

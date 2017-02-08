@@ -144,6 +144,7 @@ var Ent = new Vue();
             },
             eClick: function(item) {
                 Ent.$emit('sendAtcItem', item);
+                Ent.$emit('setAtcId', item.contentUrl)
             },
             eLoadMore: function() {
                 if (this.isLoadMore) {
@@ -414,6 +415,7 @@ var Ent = new Vue();
         mounted: function() {
             Ent.$on('openAtricle', this._HandleOpened);
             Ent.$on('hashchange', this._CloseAtc);
+            Ent.$on('setAtcId', this.eClickMoreAtc);
         },
         updated: function() {
             var code = document.getElementsByTagName('code');
