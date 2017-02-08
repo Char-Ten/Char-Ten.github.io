@@ -333,8 +333,6 @@ var Ent = new Vue();
     Vue.component('app-atc', {
         template: '#tp_atc',
         data: function() {
-
-            console.log(location.hash)
             return {
                 addAtcClass: [],
                 info: {},
@@ -346,7 +344,7 @@ var Ent = new Vue();
         computed: {
             imgSrc: function() {
                 var str = this.info.content || '';
-                var url = str.match(/<img src="http:(.+)" .*>/);
+                var url = str.match(/<img src="(.+)" .*>/);
                 if (url) {
                     return url[1];
                 }
