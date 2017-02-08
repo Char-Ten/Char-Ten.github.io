@@ -314,7 +314,6 @@ var Ent = new Vue();
                 if (this.index > len - 1) {
                     this.index = this.index - len;
                 }
-                //-2 -1 0 1 2 3 4
                 if (this.index < 0) {
                     this.index = len + this.index;
                 }
@@ -457,8 +456,10 @@ var Ent = new Vue();
                 Ent.$emit('eWheelGitHubStage', e);
             },
             eTouchStartGithubStage: function(e) {
-                e.preventDefault();
                 Ent.$emit('eTouchStartGithubStage', e)
+            },
+            eTouchMoveGithubStage: function(e) {
+                e.preventDefault();
             },
             eTouchEndtGithubStage: function(e) {
                 Ent.$emit('eTouchEndGithubStage', e)
