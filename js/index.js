@@ -333,12 +333,14 @@ var Ent = new Vue();
     Vue.component('app-atc', {
         template: '#tp_atc',
         data: function() {
+
+            console.log(location.hash)
             return {
                 addAtcClass: [],
                 info: {},
                 views: 0,
                 list: [],
-                atcId: ''
+                atcId: location.hash.replace('#', '')
             }
         },
         computed: {

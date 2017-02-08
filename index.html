@@ -15,7 +15,7 @@
     <link href="//cdn.bootcss.com/highlight.js/9.9.0/styles/atom-one-dark.min.css" rel="stylesheet">
     <script>
         if (isIE()) {
-            location.href = 'http://rj.baidu.com/soft/detail/14744.html?ald'
+            location.href = './IE.html'
         }
 
         function isIE() { //ie?  
@@ -37,7 +37,7 @@
 
 <body>
     <div id="app">
-        <section class="stage " :class="addStageClass">
+        <section class="stage" :class="addStageClass">
             <div class="stage-view hd">
                 <header class="hd-card">
                     <div class="hd-card_img">
@@ -101,7 +101,7 @@
                     </div>
                 </header>
             </div>
-            <div class="stage-view github" @mousewheel="eWheelGitHubStage($event)" @touchstart="eTouchStartGithubStage($event)" @touchend="eTouchEndtGithubStage($event)">
+            <div class="stage-view github" @mousewheel="eWheelGitHubStage($event)" @touchmove="eTouchMoveGithubStage($evnet)" @touchstart="eTouchStartGithubStage($event)" @touchend="eTouchEndtGithubStage($event)">
                 <app-git></app-git>
                 <header class="github_hd cell">
                     <div>
@@ -244,10 +244,23 @@
         <!--文章视图-->
         <template id="tp_atc">
             <section class="atc" :class="addAtcClass">
+                <div class="atc-bg"></div>
                 <div class="atc-mask">
                     <div class="atc-mask_blur" :style="backgroundImage"></div>
                 </div>
                 <div class="atc-ct">
+                    <nav class="atc-nav">
+                        <div class="atc-nav_ct">
+                            <div class="atc-nav_ct-g">
+                                <a href="#/list">
+                                    <i class="u-icon">&#xe612;</i>
+                                </a>
+                                <a :href="'#'+atcId">
+                                    <i class="u-icon">&#xe603;</i>
+                                </a>
+                            </div>
+                        </div>
+                    </nav>
                     <article class="atc-vw">
                         <header class="atc-vw_hd" :style="backgroundImage"  :id="atcId">
                             <div class="atc-vw_mask"></div>

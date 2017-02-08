@@ -112,4 +112,7 @@
     .atc-bd {
         padding: 15px;
     }
+    .atc-nav {
+        display: none;
+    }
 }

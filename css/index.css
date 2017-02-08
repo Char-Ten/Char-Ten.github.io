@@ -1,8 +1,8 @@
 @font-face {
     font-family: 'iconfont';
     /* project id 191130 */
-    src: url('//at.alicdn.com/t/font_9dmr294maco0qkt9.eot');
-    src: url('//at.alicdn.com/t/font_9dmr294maco0qkt9.eot?#iefix') format('embedded-opentype'), url('//at.alicdn.com/t/font_9dmr294maco0qkt9.woff') format('woff'), url('//at.alicdn.com/t/font_9dmr294maco0qkt9.ttf') format('truetype'), url('//at.alicdn.com/t/font_9dmr294maco0qkt9.svg#iconfont') format('svg');
+    src: url('//at.alicdn.com/t/font_m4oir8uun9v34n29.eot');
+    src: url('//at.alicdn.com/t/font_m4oir8uun9v34n29.eot?#iefix') format('embedded-opentype'), url('//at.alicdn.com/t/font_m4oir8uun9v34n29.woff') format('woff'), url('//at.alicdn.com/t/font_m4oir8uun9v34n29.ttf') format('truetype'), url('//at.alicdn.com/t/font_m4oir8uun9v34n29.svg#iconfont') format('svg');
 }
 
 * {
@@ -34,10 +34,7 @@ body {
     background-size: cover;
 }
 
-#app {
-    opacity: 0.9;
-    background: rgba(255, 255, 255, 0.8);
-}
+#app {}
 
 h1 {
     font-size: 35px;
@@ -88,6 +85,7 @@ stage
 }
 
 .stage-view {
+    opacity: 0.9;
     position: relative;
 }
 
@@ -806,7 +804,8 @@ atc
 }
 
 .atc,
-.atc-ct {
+.atc-ct,
+.atc-bg {
     position: fixed;
     top: 0;
     left: 0;
@@ -818,14 +817,19 @@ atc
 
 .atc-show {
     opacity: 1;
-    transform: translate(0, 0)
+    transform: translate(0, 0);
+}
+
+.atc-bg {
+    background-image: url('../image/bg.png');
+    background-size: cover;
+    opacity: 0.8
 }
 
 .atc-mask {
     height: 150px;
     width: 100%;
     overflow: hidden;
-    opacity: 1;
     background-color: #58B7FF;
 }
 
@@ -842,6 +846,7 @@ atc
 }
 
 .atc-ct {
+    opacity: 0.95;
     overflow-y: auto;
     background: none;
 }
@@ -851,6 +856,7 @@ atc
     max-width: 980px;
     margin: 75px auto;
     background: #fff;
+    box-shadow: 0 0 20px #000;
 }
 
 .atc-vw>* {
@@ -972,6 +978,43 @@ atc
 
 .atc-bd ul {
     margin-left: 15px;
+}
+
+.atc-nav {
+    position: fixed;
+    bottom: 150px;
+    width: 100%;
+}
+
+.atc-nav_ct {
+    position: relative;
+    width: 980px;
+    margin: auto;
+}
+
+.atc-nav_ct-g {
+    position: absolute;
+    bottom: 0;
+    right: -80px;
+}
+
+.atc-nav_ct a {
+    display: block;
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    border-radius: 100px;
+    margin: 15px;
+    text-align: center;
+    background: #fff;
+    color: #58B7FF;
+    box-shadow: 0 0 15px;
+    transition: all .5s;
+}
+
+.atc-nav_ct a:hover {
+    background: #13CE66;
+    color: #fff;
 }
 
 
