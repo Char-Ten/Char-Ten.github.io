@@ -199,7 +199,7 @@
                 v-for="item,i in filtedList"
                 :class="['github-item_'+i]" 
                 :href="item.html_url?item.html_url:null"
-                :key="item.id"
+                :key="item.id+i"
                 @click="eItemClick($event,item.index,i)">
                     <h3 class="github-item_tt">{{item.name}}</h3>
                     <div class="github-item_ct">

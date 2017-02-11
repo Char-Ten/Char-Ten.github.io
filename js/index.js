@@ -208,6 +208,7 @@ var Ent = new Vue();
                         timer = setTimeout(loop, 500);
                     }
                 }
+
             }
         },
         mounted: function() {
@@ -216,10 +217,14 @@ var Ent = new Vue();
                 this._Init();
 
             }, function(err) {
+                console.log(err);
                 //err handle
             });
             var vm = this;
             Ent.$on('openFd', function() {
+                if (vm.res.length === 0) {
+                    return
+                }
                 vm._Init();
             })
         }
