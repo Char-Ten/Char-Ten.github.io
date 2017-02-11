@@ -249,9 +249,18 @@ var Ent = new Vue();
                 var source = this.githubList,
                     len = this.githubList.length,
                     add = [-2, -1, 0, 1, 2];
-
+                if (len < 5) {
+                    var addTp = [
+                        [],
+                        [NaN, NaN, 0, NaN, NaN],
+                        [NaN, -1, 0, NaN, NaN],
+                        [NaN, -1, 0, 1, NaN],
+                        [NaN, -1, 0, 1, NaN],
+                    ]
+                    add = addTp[len];
+                }
                 var a = [];
-                add.forEach(function(item) {
+                add.forEach(function(item, index) {
                     var j = i + item;
                     if (j < 0) {
                         j = len + item
@@ -260,6 +269,7 @@ var Ent = new Vue();
                         j = item - 1;
                     }
                     if (j >= 0 && j < len) {
+                        source[j].className = ['github-item_' + index]
                         source[j].index = j;
                         a.push(source[j]);
                     }

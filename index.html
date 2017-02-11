@@ -197,9 +197,9 @@
             <transition-group tag="section" name="list_anmt" mode="out-in" class="github_bd">
                 <a  class="github-item" 
                 v-for="item,i in filtedList"
-                :class="['github-item_'+i]" 
+                :class="item.className" 
                 :href="item.html_url?item.html_url:null"
-                :key="item.id+i"
+                :key="item.index"
                 @click="eItemClick($event,item.index,i)">
                     <h3 class="github-item_tt">{{item.name}}</h3>
                     <div class="github-item_ct">
