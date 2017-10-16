@@ -74,7 +74,7 @@
     <script type="text/x-template" id="model-addPerson">
         <x-alert title="添加对象">
             <div>
-                <input class="add-person__inp" type="text" value="" placeholder="输入对象名字" v-model="textValue" ref="input" @keyup.enter="atv_Submit" />
+                <input class="add-person__inp" type="text" value="" placeholder="输入对象名字,批量输入用逗号隔开" v-model="textValue" ref="input" @keyup.enter="atv_Submit" />
             </div>
             <div slot="footer">
                 <button class="m-model-btn m-model-btn__true" :class="isArrowSubmit?'':'m-model-btn__disabled'" @click="atv_Submit">确定</button>
