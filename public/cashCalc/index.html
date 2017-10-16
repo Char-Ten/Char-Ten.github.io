@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>合租月结计算器</title>
+    <link rel="stylesheet" href="./index/css/calc.css">
+</head>
+
+<body>
+    <div id="app">
+        <section class="g-ct  s-scroll">
+            <table-view :tabledata="personState"></table-view>
+        </section>
+        <footer class="g-ft">
+            <div class="m-inp s-scroll">
+                <header class="m-inp__title">
+                    <div>
+                        <span>输入：</span>
+                        <input class="m-inp__inputer" type="number" v-model="inputValue" ref="input" @keydown="atv_KeydownInput" @keyup.enter="atv_SubmitInput" />
+                    </div>
+                    <div class="m-inp__adder" @click="atv_ShowAddPersonModel">
+                        <span>添加对象</span>
+                    </div>
+                </header>
+                <section class="m-inp__content">
+                    <div class="m-inp__line">
+                        <div class="m-inp__label"><b>输入</b></div>
+                        <p class="m-inp__res" v-text="result">狗轮 【比例】 225</p>
+                    </div>
+                    <div class="m-inp__line">
+                        <div class="m-inp__label"><b>对象</b></div>
+                        <div class="m-inp__target">
+                            <a v-for="(item,index) in personState" v-text="item.name" :class="{'m-inp-a__atv':personIndex===index}"></a>
+                        </div>
+                    </div>
+                    <div class="m-inp__line">
+                        <div class="m-inp__label"><b>类型</b></div>
+                        <div class="m-inp__target m-inp__types">
+                            <a v-for="(item,index) in typesState" v-text="item" :class="{'m-inp-a__atv':typesIndex===index}"></a>
+                        </div>
+                    </div>
+
+                </section>
+            </div>
+            <div class="m-hstr s-scroll">
+                <ul>
+                    <li v-for="item,index in historyList">
+                        <p class="m-inp__res" v-text="item"></p>
+                    </li>
+                </ul>
+            </div>
+        </footer>
+        <model-add-person v-show="isAddModelShow" :focus="isAddModelShow" @submit="atv_AddPerson" @cancel="isAddModelShow=false"></model-add-person>
+    </div>
+
+
+    <script type="text/x-template" id="x-alert">
+        <div class="m-modle__mask">
+            <div class="m-modle">
+                <header v-text="title"></header>
+                <section>
+                    <slot></slot>
+                </section>
+                <footer>
+                    <slot name="footer"></slot>
+                </footer>
+            </div>
+        </div>
+    </script>
+
+    <script type="text/x-template" id="model-addPerson">
+        <x-alert title="添加对象">
+            <div>
+                <input class="add-person__inp" type="text" value="" placeholder="输入对象名字" v-model="textValue" ref="input" @keyup.enter="atv_Submit" />
+            </div>
+            <div slot="footer">
+                <button class="m-model-btn m-model-btn__true" :class="isArrowSubmit?'':'m-model-btn__disabled'" @click="atv_Submit">确定</button>
+                <button class="m-model-btn m-model-btn__false" @click="atv_cancel">取消</button>
+            </div>
+        </x-alert>
+    </script>
+
+    <script type="text/x-template" id="table-view">
+        <div class="main-table">
+            <div ref="table">
+                <table>
+                    <tbody>
+                        <tr>
+                            <th>类型</th>
+                            <th v-for="item,index in typeIndex" v-text="index" :colspan="tableData.length||1"></th>
+                        </tr>
+                        <tr>
+                            <th>对象</th>
+                            <template v-for="type,ti in typeIndex">
+                            <td v-for="person,pi in tableData" v-text="person.name"></td>
+                        </template>
+                        </tr>
+                        <tr v-for="(item,index) in tableContentMaxLength">
+                            <th></th>
+                            <template v-for="type,ti in typeIndex">
+                            <td v-for="person,pi in tableData" v-text="person[type][index]"></td>
+                        </template>
+                        </tr>
+                        <tr>
+                            <th rowspan="2">合计</th>
+                            <template v-for="type,ti in typeIndex">
+                            <td v-for="person,pi in tableData" v-text="calc_PersonTypesCount(person[type],type,pi)"></td>
+                        </template>
+                        </tr>
+                        <tr>
+                            <template v-for="type,ti in typeIndex">
+                            <td :colspan="tableData.length||1" v-text="calc_TypesCount(type)"></td>
+                        </template>
+                        </tr>
+                        <tr>
+                            <th>结算</th>
+                            <template v-for="type,ti in typeIndex">
+                            <td v-for="person,pi in tableData" v-text="calc_TypesCountAverage(type,pi)"></td>
+                        </template>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <footer>
+                <button class="m-model-btn" :class="isArrowSubmit?'':'m-model-btn__disabled'" @click="atv_submitTable">生成excel</button>
+            </footer>
+        </div>
+    </script>
+
+
+    <script src="https://cdn.bootcss.com/vue/2.4.4/vue.min.js"></script>
+    <script src="https://cdn.bootcss.com/vuex/2.0.0/vuex.min.js"></script>
+    <script src="https://cdn.bootcss.com/xlsx/0.11.5/xlsx.full.min.js"></script>
+    <script src="https://cdn.bootcss.com/FileSaver.js/2014-11-29/FileSaver.min.js"></script>
+    <script src="./index/js/calc.min.js"></script>
+</body>
+
+</html>

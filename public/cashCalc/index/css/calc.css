@@ -1,0 +1,283 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+html,
+body,
+#app {
+    height: 100%;
+}
+
+body {
+    background: #555;
+}
+
+table {
+    width: 100%;
+    border-spacing: 1px;
+}
+
+th,
+td {
+    padding: 2px;
+    text-align: center;
+    border: 1px solid transparent;
+    background: rgba(255, 255, 255, 0.1)
+}
+
+th {
+    color: #99A9BF
+}
+
+td {
+    color: #fff
+}
+
+#app {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+}
+
+.g-ct {
+    flex: 2;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    background: #324057;
+    overflow: auto;
+}
+
+.g-ft {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    background: #1F2D3D;
+    overflow: hidden;
+}
+
+.m-hstr,
+.m-inp {
+    flex: 1;
+    height: 100%;
+    padding: 0 15px;
+    background: #16212C;
+    box-shadow: 0 0 5px #000 inset;
+    overflow: auto;
+}
+
+.m-inp {
+    margin-right: 15px;
+}
+
+.m-inp__title {
+    display: flex;
+    align-items: stretch;
+    justify-content: space-between;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    color: #99A9BF;
+}
+
+.m-inp__adder {
+    height: 25px;
+    line-height: 25px;
+    padding: 0 25px;
+    border: 1px solid #99A9BF;
+    border-radius: 12.5px;
+    overflow: hidden;
+    color: #99A9BF;
+    text-align: center;
+    font-size: 14px;
+    vertical-align: middle;
+    user-select: none;
+    cursor: pointer;
+    transition: all .5s;
+}
+
+.m-inp__adder:hover {
+    background: #475669;
+    color: #fff;
+}
+
+.m-inp__adder:active {
+    transition: all .1s;
+    background: #fff;
+    color: #475669
+}
+
+.m-inp__content {
+    padding-left: 15px;
+}
+
+.m-inp__label {
+    font-size: 13px;
+    color: #475669
+}
+
+.m-inp__inputer {
+    width: auto;
+    border: none;
+    border-bottom: 1px solid #99A9BF;
+    color: #99A9BF;
+    background: none;
+    outline: none;
+}
+
+.m-inp__line {
+    display: flex;
+    align-items: center;
+    padding: 1px 0;
+    border-bottom: 1px dotted #475669;
+}
+
+.m-inp__target {
+    margin-left: 15px;
+    font-size: 14px;
+    color: #324057;
+}
+
+.m-inp__target a {
+    padding: 1px 5px;
+    border: 1px solid transparent;
+    border-radius: 10px;
+}
+
+.m-inp__res {
+    flex: 1;
+    padding: 15px 0;
+    text-align: center;
+    font-size: 14px;
+    color: #99A9BF;
+}
+
+.m-inp__types a {
+    display: block;
+}
+
+a.m-inp-a__atv {
+    border: 1px solid #99A9BF;
+    color: #99A9BF;
+    box-shadow: 0 0 2px #99A9BF
+}
+
+.m-hstr li {
+    margin-left: 15px;
+    color: #99A9BF
+}
+
+.m-hstr p {
+    padding: 5px 0;
+    text-align: left;
+}
+
+.m-hstr ul {
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+.m-modle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -100%);
+    min-width: 128px;
+    border: 1px solid #16212C;
+    border-radius: 5px;
+    box-shadow: 0 0 15px #1F2D3D;
+    overflow: hidden;
+    background: #475669;
+}
+
+.m-modle header {
+    padding: 5px;
+    color: #99A9BF;
+}
+
+.m-modle section {
+    padding: 25px;
+    background: #324057;
+}
+
+.m-modle footer {
+    display: flex;
+    justify-content: flex-end;
+    padding: 5px;
+    color: #99A9BF;
+}
+
+.m-modle__mask {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, .5)
+}
+
+.m-model-btn {
+    padding: 2px 5px;
+    border: 1px solid #99A9BF;
+    border-radius: 5px;
+    background: none;
+    color: #99A9BF;
+    outline: none;
+    transition: all .5s;
+    cursor: pointer;
+}
+
+.m-model-btn:hover {
+    background: #475669;
+    color: #fff;
+}
+
+.m-model-btn:active {
+    transition: all .1s;
+    background: #fff;
+    color: #475669
+}
+
+.m-model-btn__disabled:hover,
+.m-model-btn__disabled:active,
+.m-model-btn__disabled {
+    color: #324057;
+    border-color: #324057;
+    cursor: not-allowed;
+    background: none;
+}
+
+.add-person__inp {
+    padding: 2px 5px;
+    border: none;
+    border-bottom: 1px solid #99A9BF;
+    color: #fff;
+    background: none;
+    outline: none;
+}
+
+.main-table {
+    min-width: 100%;
+}
+
+.main-table footer {
+    text-align: right;
+    padding: 25px;
+}
+
+.s-scroll::-webkit-scrollbar {
+    width: 15px;
+    height: 15px;
+    background-color: rgba(50, 64, 87, 1);
+    box-shadow: 0 0 5px #16212C;
+    transition: all .5s;
+}
+
+.s-scroll::-webkit-scrollbar-thumb {
+    box-shadow: 0 0 5px #16212C;
+    background-color: rgba(71, 86, 105, 1);
+    opacity: 0.5
+}
