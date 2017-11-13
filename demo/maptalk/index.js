@@ -18,6 +18,10 @@ el.compass.width = el.compass.offsetWidth;
 el.compass.height = el.compass.offsetHeight;
 context.compass.strokeStyle = '#0f0'
 window.addEventListener('deviceorientation', function(e) {
-    map.setPitch(e.beta);
-    map.setBearing(e.alpha)
+    // map.setPitch(e.beta);
+    // map.setBearing(e.alpha)
+    map.setView({
+        pitch: e.beta,
+        bearing: e.alpha
+    })
 });
