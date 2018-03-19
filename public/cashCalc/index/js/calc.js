@@ -5,6 +5,10 @@
         '参与比例': 'ratio'
     }
 
+    var speaker=new window.SpeechSynthesisUtterance();
+    speaker.rate=2;
+    speaker.pitch=2;
+
     Vue.component('x-alert', {
         template: '#x-alert',
         props: ['title']
@@ -284,6 +288,7 @@
                 var person = this.selectedPerson.name;
                 var type = '【' + this.selectedType + '】';
                 var value = this.inputValue;
+                
                 return [person, type, value].join(' ')
             },
             selectedPerson: function() {
@@ -333,6 +338,8 @@
             atv_SubmitInput: function() {
                 var name = this.selectedPerson.name;
                 var type = this.selectedType;
+                speaker.text=[name,type,parseFloat(this.inputValue)].join(' ');
+                window.speechSynthesis.speak(speaker)
                 if (!name || !type || !this.inputValue) return;
                 STORE.commit('addHistory', this.result);
                 STORE.commit('addPersonCashType', {
@@ -342,24 +349,42 @@
                     index: this.personIndex
                 });
                 this.inputValue = '';
-
+                               
             },
             atv_TypesIndexAdd: function(e) {
                 e.preventDefault();
                 this.typesIndex = this.util_AddValue(this.typesIndex, this.typesState.length)
+                this.util_speak();
+                
             },
             atv_TypesIndexSub: function(e) {
                 e.preventDefault();
                 this.typesIndex = this.util_SubValue(this.typesIndex, this.typesState.length)
+                this.util_speak();
+                
             },
             atv_PersonIndexAdd: function(e) {
                 e.preventDefault();
                 this.personIndex = this.util_AddValue(this.personIndex, Object.keys(this.personState).length);
+                this.util_speak();
+                
             },
+
             atv_PersonIndexSub: function(e) {
                 e.preventDefault();
                 this.personIndex = this.util_SubValue(this.personIndex, Object.keys(this.personState).length);
+                this.util_speak();
+                
             },
+
+            util_speak:function(e){
+                var person = this.selectedPerson.name;
+                var type = this.selectedType;
+                var value = this.inputValue;
+                speaker.text=[person,type,value].join(' ');
+                window.speechSynthesis.speak(speaker)
+            },
+
             util_AddValue: function(value, length) {
                 value++;
                 if (value >= length) value -= length;
