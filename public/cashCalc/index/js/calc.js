@@ -158,7 +158,7 @@
                 }
 
                 /**公共金额AA制，全部平分 */
-                return (this.typesCounts[type][i] - value / 4).toFixed(2);
+                return (this.typesCounts[type][i] - value / this.tableData.length).toFixed(2);
             },
             util_total: function(arr) {
                 if (!Array.isArray(arr)) return 0;
