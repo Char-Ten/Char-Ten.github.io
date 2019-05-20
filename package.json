@@ -1,0 +1,38 @@
+{
+  "name": "char-ten.github.io",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Char-Ten/Char-Ten.github.io.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Char-Ten/Char-Ten.github.io/issues"
+  },
+  "homepage": "https://github.com/Char-Ten/Char-Ten.github.io#readme",
+  "dependencies": {
+    "@babel/core": "^7.4.4",
+    "babel-loader": "^8.0.6",
+    "css-loader": "^2.1.1",
+    "file-loader": "^3.0.1",
+    "less": "^3.9.0",
+    "less-loader": "^5.0.0",
+    "mini-css-extract-plugin": "^0.6.0",
+    "postcss-loader": "^3.0.0",
+    "react": "^16.8.6",
+    "react-router": "^5.0.0",
+    "style-loader": "^0.23.1",
+    "ts-loader": "^6.0.1",
+    "typescript": "^3.4.5",
+    "url-loader": "^1.1.2",
+    "webpack": "^4.32.0",
+    "webpack-cli": "^3.3.2",
+    "webpack-dev-server": "^3.4.1"
+  }
+}
