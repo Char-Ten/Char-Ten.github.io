@@ -21,10 +21,9 @@ module.exports = function(env) {
 		context: path.join(__dirname, '../src'),
 		entry: entries.entries,
 		output: {
-			path: path.join(__dirname, '../lib'),
-			filename: 'scripts/[name].[hash:5].js',
-			chunkFilename: 'srcipts/chunk.[name].[hash:5].js',
-			publicPath: './'
+			path: path.join(__dirname, '../'),
+			filename: 'lib/scripts/[name].[hash:5].js',
+			chunkFilename: 'lib/srcipts/chunk.[name].[hash:5].js',
 		},
 		optimization: {
 			splitChunks: {
