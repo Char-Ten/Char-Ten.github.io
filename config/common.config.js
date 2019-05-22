@@ -1,6 +1,7 @@
 const path = require("path");
 const webpack = require("webpack");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const entries = require('./entries')
 const cssRegex = /\.css$/;
 const cssModuleRegex = /\.module\.css$/;
 const lessRegex = /\.less$/;
@@ -18,9 +19,7 @@ module.exports = function(env) {
 	return {
 		mode: env.production ? "production" : "development",
 		context: path.join(__dirname, "../src"),
-		entry: {
-			app: "./main.js"
-		},
+		entry: entries.entries,
 		output: {
 			path: path.join(__dirname, "../lib"),
 			filename: "scripts/[name].[hash:5].js",
@@ -40,7 +39,7 @@ module.exports = function(env) {
 				},
 				{
 					test: /\.ts$/,
-					use: ["babel-loader", "ts-loader"]
+					use: ["babel-loader", "awesome-typescript-loader"]
 				},
 				{
 					test: cssRegex,
@@ -85,7 +84,7 @@ module.exports = function(env) {
 				}
 			]
 		},
-		plugin: [
+		plugins: [
             new webpack.DefinePlugin({
                 "module.IS_DEV":!env.production,
                 "module.IS_PROD":env.production,
@@ -97,6 +96,6 @@ module.exports = function(env) {
 					filename: "styles/[name].[contenthash:8].css",
 					chunkFilename: "styles/[name].[contenthash:8].chunk.css"
 				})
-		].filter(Boolean)
+		].filter(Boolean).concat(entries.htmlPlugin)
 	};
 };

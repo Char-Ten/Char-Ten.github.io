@@ -1,0 +1,28 @@
+{
+	"compilerOptions": {
+		"allowJs": true,
+		"sourceMap": true,
+		"target": "es6",
+		"jsx": "react",
+		"moduleResolution": "node",
+		"emitDecoratorMetadata": true,
+		"experimentalDecorators": true,
+		"declaration": false,
+		"noImplicitAny": false,
+		"noImplicitReturns": false,
+		"removeComments": true,
+		"strictNullChecks": false,
+		"baseUrl": ".",
+		"paths": {
+			"src/*": ["./src/*"]
+		}
+	},
+	"exclude": [
+		"dist",
+		"build",
+		"config",
+		"scripts",
+        "public",
+        "node_modules"
+	]
+}
