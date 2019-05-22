@@ -7,13 +7,12 @@ const children = fs.readdirSync(entriesDir);
 const entries={};
 const htmlPlugin=[];
 children.forEach((item)=>{
-    if(/\.tsx?$/.test(item)){
-        let name = item.replace(/\.tsx?$/,'');
+    if(/\.[tj]sx?$/.test(item)){
+        let name = item.replace(/\.[tj]sx?$/,'');
         entries[name]=`./entries/${item}`;
         htmlPlugin.push(new HtmlWebpackPlugin({
             filename:`${name}.html`,
             template:path.join(__dirname,'../tmp/template.html'),
-            inject:true,
             chunks:[name]
         }))
     }
