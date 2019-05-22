@@ -4,5 +4,6 @@ module.exports = Object.assign({},commonConfig,{
         port:3000,
         host:'0.0.0.0',
         hot:true,
+        publicPath:commonConfig.output.path
     }
 });

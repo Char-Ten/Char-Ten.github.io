@@ -12,7 +12,9 @@ children.forEach((item)=>{
         entries[name]=`./entries/${item}`;
         htmlPlugin.push(new HtmlWebpackPlugin({
             filename:`${name}.html`,
-            template:path.join(__dirname,'../tmp/template.html')
+            template:path.join(__dirname,'../tmp/template.html'),
+            inject:true,
+            chunks:[name]
         }))
     }
 });

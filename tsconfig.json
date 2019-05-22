@@ -1,11 +1,11 @@
 {
 	"compilerOptions": {
-		"allowJs": true,
-		"sourceMap": true,
+		"allowJs": false,
+		"sourceMap": false,
 		"target": "es6",
 		"jsx": "react",
 		"moduleResolution": "node",
-		"emitDecoratorMetadata": true,
+		"emitDecoratorMetadata": false,
 		"experimentalDecorators": true,
 		"declaration": false,
 		"noImplicitAny": false,
@@ -23,6 +23,7 @@
 		"config",
 		"scripts",
         "public",
-        "node_modules"
+        "node_modules",
+        "lib"
 	]
 }

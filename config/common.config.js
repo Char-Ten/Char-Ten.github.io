@@ -22,7 +22,8 @@ module.exports = function(env) {
 		entry: entries.entries,
 		output: {
 			path: path.join(__dirname, "../lib"),
-			filename: "scripts/[name].[hash:5].js",
+            filename: "scripts/[name].[hash:5].js",
+            chunkFilename:"srcipts/chunk.[name].[hash:5].js",
 			publicPath: "."
 		},
 		resolve: {
@@ -39,7 +40,7 @@ module.exports = function(env) {
 				},
 				{
 					test: /\.ts$/,
-					use: ["babel-loader", "awesome-typescript-loader"]
+					use: ["babel-loader", "ts-loader"]
 				},
 				{
 					test: cssRegex,
