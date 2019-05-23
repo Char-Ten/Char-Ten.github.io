@@ -1,6 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin")
 const entries = require('./entries');
 const cssRegex = /\.css$/;
 const cssModuleRegex = /\.module\.css$/;
@@ -18,9 +19,10 @@ module.exports = function(env) {
 		: 'style-loader';
 	return {
 		mode: env.production ? 'production' : 'development',
-		context: path.join(__dirname, '../src'),
+		context: path.join(__dirname, '../'),
 		entry: entries.entries,
 		output: {
+			pathinfo: false,
 			path: path.join(__dirname, '../'),
 			filename: 'lib/scripts/[name].[hash:5].js',
 			chunkFilename: 'lib/srcipts/chunk.[name].[hash:5].js',
@@ -46,19 +48,23 @@ module.exports = function(env) {
 			rules: [
 				{
 					test: /\.js$/,
+					include: path.join(__dirname, '../src'),
 					use: 'babel-loader'
 				},
 				{
 					test: /\.ts$/,
-					use: ['babel-loader', 'ts-loader']
+					include: path.join(__dirname, '../src'),
+					use: 'babel-loader'
 				},
 				{
 					test: cssRegex,
+					include: path.join(__dirname, '../src'),
 					exclude: cssModuleRegex,
 					use: [styleLoader, 'css-loader', 'postcss-loader']
 				},
 				{
 					test: lessRegex,
+					include: path.join(__dirname, '../src'),
 					exclude: lessModuleRegex,
 					use: [
 						styleLoader,
@@ -69,10 +75,12 @@ module.exports = function(env) {
 				},
 				{
 					test: cssModuleRegex,
+					include: path.join(__dirname, '../src'),
 					use: [styleLoader, moduleCssLoader, 'postcss-loader']
 				},
 				{
-					test: lessRegex,
+					test: lessModuleRegex,
+					include: path.join(__dirname, '../src'),
 					use: [
 						styleLoader,
 						moduleCssLoader,
@@ -82,11 +90,14 @@ module.exports = function(env) {
 				},
 				{
 					test: /\.(jpe?g|png|svg|bmp|gif)$/,
+					include: path.join(__dirname, '../src'),
 					use: {
 						loader: 'url-loader',
 						options: {
 							limit: 5000,
-							name: '[path][name].[ext]'
+							name(file){
+								return '/index/[name].[ext]'
+							}
 						}
 					}
 				},
@@ -99,6 +110,7 @@ module.exports = function(env) {
 				'module.IS_PROD': env.production,
 				'module.IS_RENDER': env.render
 			}),
+			new ForkTsCheckerWebpackPlugin(),
 			!env.production && new webpack.HotModuleReplacementPlugin(),
 			env.production &&
 				new MiniCssExtractPlugin({
@@ -107,6 +119,6 @@ module.exports = function(env) {
 				})
 		]
 			.filter(Boolean),
-		devtool: 'cheap-eval-source-map'
+		devtool: env.production?'none':'cheap-eval-source-map'
 	};
 };

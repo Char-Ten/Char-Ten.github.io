@@ -1,1 +1,3 @@
-console.log(1)
+import 'src/styles/reset.less'
+
+module.hot
