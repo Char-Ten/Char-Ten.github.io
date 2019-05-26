@@ -1,0 +1,34 @@
+@import (reference) "~src/styles/theme.less";
+#HomePageAuthor{
+    position: relative;
+    height: 150px;
+    text-align: center;
+    .pic{
+        position: absolute;
+        top:-65px;
+        left: 50%;
+        overflow: hidden;
+        width:90px;
+        height: 90px;
+        border:5px solid @primary-color;
+        border-radius: 50px;
+        margin-left: -45px;
+        background: #fff;
+        box-shadow: 0 5px 10px fade(@gray-color,50%);
+
+        img{
+            width:100%;
+            height: 100%;
+        }
+    }
+    .name{
+        padding-top:50px
+    }
+    code{
+        color:darken(@seconrd-color,30%);
+    }
+    h1{
+        padding-bottom:20px;
+        color:darken(@primary-color,20%)
+    }
+}
