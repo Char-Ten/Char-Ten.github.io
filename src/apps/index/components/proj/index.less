@@ -1,18 +1,22 @@
 @import (reference) "~src/styles/theme.less";
-#HomePageProj{
-    height: 800px;
-    background: @primary-color;
-    ul{
-        padding-top: 20px;
+#HomePageProj {
+	height: 865px;
+	background: @primary-color;
+	ul {
+		padding-top: 35px;
         font-size: 0;
-    }
-    li{
-        display: inline-block;
-        width:32%;
+        text-align: center;
+	}
+	li {
+		display: inline-block;
+		width: 30%;
         height: 240px;
-        margin-bottom: 15px;
-        margin-left: 1%;
-        background:@white-color;
-        font-size: 12px;
-    }
+        margin: 0 1%;
+		margin-bottom: 35px;
+		
+		font-size: 12px;
+        box-shadow: 
+            15px 15px 15px 5px darken(@primary-color, 15%);
+        background: lighten(@primary-color,25%)
+	}
 }
