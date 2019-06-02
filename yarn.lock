@@ -1306,6 +1306,11 @@ babel-plugin-dynamic-import-node@2.2.0:
   dependencies:
     object.assign "^4.1.0"
 
+babel-plugin-label-switch@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/babel-plugin-label-switch/-/babel-plugin-label-switch-1.0.0.tgz#13b57f482965a0c2084d78a55473dc12d28af48a"
+  integrity sha512-JfTcwXDxbehPXDcw6KGHGaiiwRmWdMIz78Hl1FZcNl+oFFb6MMhrLOOu8obyBt/HOoz1yYIJrNXFqj/EU9WNCA==
+
 babel-plugin-macros@2.5.0:
   version "2.5.0"
   resolved "https://registry.yarnpkg.com/babel-plugin-macros/-/babel-plugin-macros-2.5.0.tgz#01f4d3b50ed567a67b80a30b9da066e94f4097b6"

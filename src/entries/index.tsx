@@ -1,8 +1,17 @@
 import * as React from 'react';
-import * as ReactDOM from 'react-dom';
+import * as TReactDOM from 'react-dom';
+import * as TReactDOMServer from 'react-dom/server/';
 import App from 'src/apps/index/main';
-import 'src/styles/reset.less';
-
-if(!module.IS_RENDER){
-    ReactDOM.render(<App/>,document.getElementById("app"))
-}
+export default (function(){
+	case$_IS_RUNTIME:{
+        require("src/styles/reset.less")
+		const ReactDOM:typeof TReactDOM=require('react-dom');
+		ReactDOM.render(<App/>,document.getElementById("app"));
+	}
+	
+	case$_IS_RENDER:{
+		const ReactDOMServer:typeof TReactDOMServer=require('react-dom/server/');
+		const str = ReactDOMServer.renderToString(<App/>);
+		return str
+	}
+})();
