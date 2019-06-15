@@ -1,19 +1,18 @@
 import * as React from "react";
-import Header from './components/header';
-import Author from './components/author';
-import Proj from './components/proj';
-import Articles from './components/articles'
-import Collections from './components/collection';
-export default function(): React.ReactElement{
+import Banner from "./components/banner";
+import Proj from "./components/proj"
+import "./styles/main.less";
+export default function(): React.ReactElement {
 	return (
 		<div id="HomePage">
-			<Header/>
-			<Author />
-			<Proj />
-			<Articles />
-            <Collections/>
-			<div id="HomePageFriends" />
-			<footer id="HomePageFooter" />
+			<Banner />
+
+            <div id="HomePageContent">
+            <Proj/>
+                <div id="HomePageFriends" />
+                <footer id="HomePageFooter" />
+            </div>
+			
 		</div>
 	);
-};
+}

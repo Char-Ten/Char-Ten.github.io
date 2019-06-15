@@ -1,22 +1,46 @@
 @import (reference) "~src/styles/theme.less";
 #HomePageProj {
-	height: 865px;
-	background: @primary-color;
-	ul {
-		padding-top: 35px;
+    h2{
+        width:200px;
+        padding:.5rem 1em;
+        border-radius: 0 100% 0 0;
+        color:@white-color;
+        background:@primary-color;
+    }
+    ul{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        padding:15px 0;
+        border-top:1px solid @primary-color;
         font-size: 0;
-        text-align: center;
-	}
-	li {
-		display: inline-block;
-		width: 30%;
-        height: 240px;
-        margin: 0 1%;
-		margin-bottom: 35px;
-		
-		font-size: 12px;
-        box-shadow: 
-            15px 15px 15px 5px darken(@primary-color, 15%);
-        background: lighten(@primary-color,25%)
-	}
+    }
+    li{
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        align-items: center;
+        width:200px;
+        height: 200px;
+        margin-right: 15px;
+        margin-bottom: 15px;
+        background:@white-color;
+
+    }
+
+    .item-content{
+        width:100%;
+        height: 30%;
+        color:@white-color;
+        background: fade(@primary-color,80%);
+        h3{
+            padding: 12px;
+            padding-bottom: 0;
+        }
+        p{  
+            padding-left: 12px;
+            font-size: 12px;
+        }
+    }
+    
 }

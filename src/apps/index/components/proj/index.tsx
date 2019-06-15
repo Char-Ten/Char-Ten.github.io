@@ -5,14 +5,15 @@ class HomePageProj extends React.Component {
 	render() {
 		return (
 			<div id="HomePageProj">
-				<div className="c-center">
+                <h2>应用</h2>
+				<div>
 					<ul>
 						{new Array(9).fill(1).map((item, i) => {
 							return (
-								<li key={i}>
-									<div>
-										<h2>测试</h2>
-										<p />
+								<li key={i} className="item">
+									<div className="item-content">
+										<h3>测试</h3>
+										<p>测试文字</p>
 									</div>
 								</li>
 							);
