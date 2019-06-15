@@ -9,10 +9,14 @@ const htmlPlugin=[];
 children.forEach((item)=>{
     if(/\.[tj]sx?$/.test(item)){
         let name = item.replace(/\.[tj]sx?$/,'');
+        let template = path.join(__dirname,`../tmp/${name}.html`);
+        if(!fs.existsSync(template)){
+            template = path.join(__dirname,'../tmp/template.html')
+        }
         entries[name]=`./src/entries/${item}`;
         htmlPlugin.push(new HtmlWebpackPlugin({
             filename:`${name}.html`,
-            template:path.join(__dirname,'../tmp/template.html'),
+            template,
             chunks:[name]
         }))
     }

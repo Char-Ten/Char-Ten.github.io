@@ -3,34 +3,17 @@ import "./index.less"
 function Articles():React.ReactElement{
     return (
         <div id="HomePageArticle">
-            <div className="c-center">
-                <ul>
-                    <li>
-                        <a>
-                            <h2>文章标题</h2>
-                            <p>文章简介</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a>
-                            <h2>文章标题</h2>
-                            <p>文章简介</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a>
-                            <h2>文章标题</h2>
-                            <p>文章简介</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a>
-                            <h2>文章标题</h2>
-                            <p>文章简介</p>
-                        </a>
-                    </li>
-                </ul>
-            </div>
+           <h2>文章</h2>
+           <ul>
+               {new Array(16).fill(1).map((item,i)=>{
+                   return <li key={i} className="article-item">
+                       <div>
+                           <h3>文章标题</h3>
+                           <p>文章简介</p>
+                       </div>
+                   </li>
+               })}
+           </ul>
         </div>
     )
 }
