@@ -3,7 +3,7 @@ import "./index.less"
 function Articles():React.ReactElement{
     return (
         <div id="HomePageArticle">
-           <h2>文章</h2>
+           <h2 className="c-part-title">文章</h2>
            <ul>
                {new Array(16).fill(1).map((item,i)=>{
                    return <li key={i} className="article-item">
